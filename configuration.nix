@@ -13,7 +13,7 @@
   hardware.enableAllFirmware = true;
   #networking.enableB43Firmware = true;
 
-  #boot.kernelPackages =  pkgs.linuxPackages_3_10;
+  boot.kernelPackages =  pkgs.linuxPackages_4_2;
   # Use the gummiboot efi boot loader.
   boot.loader.gummiboot.enable = true;
   boot.loader.gummiboot.timeout = 5;
@@ -103,27 +103,29 @@
     #  haskellPackages.taffybar
     #];
 
-    # TODO: Use the mtrack driver but do better than this.
-    # multitouch.enable = true;
-    # multitouch.invertScroll = true;
-
-    synaptics.additionalOptions = ''
-      Option "VertScrollDelta" "-100"
-      Option "HorizScrollDelta" "-100"
+    multitouch.enable = true;
+    multitouch.invertScroll = true;
+    multitouch.ignorePalm = true;
+    multitouch.additionalOptions = ''
+	Option "Thumbsize" "50"
+	Option "ScrollDistance" "100" 
     '';
-    synaptics.buttonsMap = [ 1 3 2 ];
-    synaptics.enable = true;
-    synaptics.tapButtons = false;
-    synaptics.fingersMap = [ 0 0 0 ];
-    synaptics.twoFingerScroll = true;
-    synaptics.vertEdgeScroll = false;
+
+    #synaptics.additionalOptions = ''
+    #  Option "VertScrollDelta" "-100"
+    #  Option "HorizScrollDelta" "-100"
+    #'';
+    #synaptics.buttonsMap = [ 1 3 2 ];
+    #synaptics.enable = true;
+    #synaptics.tapButtons = false;
+    #synaptics.fingersMap = [ 0 0 0 ];
+    #synaptics.twoFingerScroll = true;
+    #synaptics.vertEdgeScroll = false;
 
     screenSection = ''
-      Option "DPI" "96 x 96"
       Option "NoLogo" "TRUE"
-      #Option "nvidiaXineramaInfoOrder" "DFP-2"
-      #Option "metamodes" "HDMI-0: nvidia-auto-select +0+0, DP-2: nvidia-auto-select +1920+0 {viewportin=1680x1050}"
     '';
+    # Option "DPI" "96 x 96"
 
     xkbOptions = "terminate:ctrl_alt_bksp, ctrl:nocaps";
   };
