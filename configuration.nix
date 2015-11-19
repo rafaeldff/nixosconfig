@@ -107,9 +107,8 @@
     multitouch.invertScroll = true;
     multitouch.ignorePalm = true;
     multitouch.additionalOptions = ''
-	Option "Thumbsize" "50"
-	Option "ScrollDistance" "100" 
-    '';
+        Option "FingerHigh" "20"
+   '';
 
     #synaptics.additionalOptions = ''
     #  Option "VertScrollDelta" "-100"
