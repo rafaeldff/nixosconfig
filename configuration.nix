@@ -66,6 +66,10 @@
     
     # fonts
     xlsfonts
+
+    # vim
+    vimNox
+    ctags
   ];
 
   # List services that you want to enable:
@@ -80,6 +84,7 @@
   # services.xserver.enable = true;
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e";
+  services.udisks2.enable = true;
 
   services.xserver = {
     enable = true;
