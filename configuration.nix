@@ -12,6 +12,9 @@
 
   hardware.enableAllFirmware = true;
   #networking.enableB43Firmware = true;
+  boot.extraModprobeConfig = ''
+    options snd_hda_intel enable=0,1
+  '';
 
   boot.kernelPackages =  pkgs.linuxPackages_4_2;
   # Use the gummiboot efi boot loader.
@@ -70,6 +73,17 @@
     # vim
     vimNox
     ctags
+   
+    # utils
+    htop
+    tree
+    ack
+
+    # dev
+    oraclejdk8
+
+    # networking
+    openvpn
   ];
 
   # List services that you want to enable:
