@@ -98,9 +98,8 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.layout = "us";
+  # docker
+  virtualisation.docker.enable = true; 
 
   # auto-mount flash drives
   services.udisks2.enable = true;
@@ -160,7 +159,7 @@
     name = "rafael";
     group = "users";
     uid = 1000;
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = ["wheel" "networkmanager" "docker"];
     createHome = true;
     home = "/home/rafael";
   };
