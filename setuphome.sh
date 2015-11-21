@@ -39,7 +39,6 @@ if [[ ! -e ./apps/idea ]]; then
   ln -s $IDEA_VER $HOME/apps/idea/current
 fi
 
-
 git config --global user.email rafael@rafaelferreira.net
 git config --global user.name "Rafael de F. Ferreira"
 

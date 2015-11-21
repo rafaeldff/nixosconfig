@@ -5,18 +5,20 @@
 { config, pkgs, ... }:
 
 {
+  ## mac hardware / low-level stuff
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
   hardware.enableAllFirmware = true;
-  #networking.enableB43Firmware = true;
+  # select the right sound card
   boot.extraModprobeConfig = ''
     options snd_hda_intel enable=0,1
   '';
 
   boot.kernelPackages =  pkgs.linuxPackages_4_2;
+
   # Use the gummiboot efi boot loader.
   boot.loader.gummiboot.enable = true;
   boot.loader.gummiboot.timeout = 5;
@@ -24,26 +26,23 @@
 
   boot.cleanTmpDir = true;
 
-  nixpkgs.config.packageOverrides = super: let self = super.pkgs; in rec
-  {
-    linux_4_1 = super.linux_4_1.override {
-      extraConfig = ''
-        BRCMFMAC_PCIE y
-        BRCMFMAC_USB  y
-        BRCMFMAC_SDIO y
-      '';
-    };
-  };
-
-  #boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
-  #boot.initrd.kernelModules = [ "wl" ];
+  #nixpkgs.config.packageOverrides = super: let self = super.pkgs; in rec
+  #{
+  #  linux_4_1 = super.linux_4_1.override {
+  #    extraConfig = ''
+  #      BRCMFMAC_PCIE y
+  #      BRCMFMAC_USB  y
+  #      BRCMFMAC_SDIO y
+  #    '';
+  #  };
+  #};
 
   networking.hostName = "rffnix"; # Define your hostname.
   networking.networkmanager.enable = true;
   networking.wireless.enable = false;
   networking.firewall.enable = false;
 
-  # Select internationalisation properties.
+  ## Select internationalisation properties.
   # i18n = {
   #   consoleFont = "Lat2-Terminus16";
   #   consoleKeyMap = "us";
@@ -53,6 +52,7 @@
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
 
+  ## Packages
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -61,7 +61,6 @@
     git
     dropbox
     rxvt_unicode
-    termite
 
     # browsers
     chromium
@@ -78,12 +77,17 @@
     htop
     tree
     ack
+    file
 
     # dev
     oraclejdk8
+    idea.idea-community
 
     # networking
     openvpn
+
+    # xmonad
+    termite
   ];
 
   # List services that you want to enable:
@@ -97,13 +101,13 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
   # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
+
+  # auto-mount flash drives
   services.udisks2.enable = true;
 
+  ## Appearance (X, xmonad, fonts, etc.)
   services.xserver = {
     enable = true;
-
-    # vaapiDrivers = [ pkgs.vaapiIntel ];
 
     desktopManager.default = "none";
     desktopManager.xterm.enable = false;
@@ -113,7 +117,7 @@
       sessionCommands = ''
         ${pkgs.xlibs.xsetroot}/bin/xsetroot -cursor_name left_ptr
       '';
-        #${pkgs.feh}/bin/feh --bg-fill ${background}
+      #${pkgs.feh}/bin/feh --bg-fill ${background}
     };
     windowManager.default = "xmonad";
     windowManager.xmonad.enable = true;
@@ -129,49 +133,14 @@
         Option "FingerHigh" "20"
    '';
 
-    #synaptics.additionalOptions = ''
-    #  Option "VertScrollDelta" "-100"
-    #  Option "HorizScrollDelta" "-100"
+    #screenSection = ''
+    #  Option "NoLogo" "TRUE"
     #'';
-    #synaptics.buttonsMap = [ 1 3 2 ];
-    #synaptics.enable = true;
-    #synaptics.tapButtons = false;
-    #synaptics.fingersMap = [ 0 0 0 ];
-    #synaptics.twoFingerScroll = true;
-    #synaptics.vertEdgeScroll = false;
-
-    screenSection = ''
-      Option "NoLogo" "TRUE"
-    '';
     # Option "DPI" "96 x 96"
 
+    # services.xserver.xkbOptions = "eurosign:e";
     xkbOptions = "terminate:ctrl_alt_bksp, ctrl:nocaps";
   };
-
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.kdm.enable = true;
-  # services.xserver.desktopManager.kde4.enable = true;
-
-  users.mutableUsers = true;
-
-
-  users.extraUsers.guest = {
-    isNormalUser = true;
-    name = "rafael";
-    group = "users";
-    uid = 1000;
-    extraGroups = ["wheel" "networkmanager"];
-    createHome = true;
-    home = "/home/rafael";
-  };
-
-  # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "15.09";
-
-  nixpkgs.config.allowUnfree = true;
-
-  security.pam.enableEcryptfs = true;
 
   fonts = {
     enableFontDir = true;
@@ -182,5 +151,24 @@
       ubuntu_font_family
     ];
   };
-   
+
+
+  ## Users
+  users.mutableUsers = true;
+  users.extraUsers.guest = {
+    isNormalUser = true;
+    name = "rafael";
+    group = "users";
+    uid = 1000;
+    extraGroups = ["wheel" "networkmanager"];
+    createHome = true;
+    home = "/home/rafael";
+  };
+  security.pam.enableEcryptfs = true;
+
+  ## Boilerplate
+  # The NixOS release to be compatible with for stateful data such as databases.
+  system.stateVersion = "15.09";
+
+  nixpkgs.config.allowUnfree = true;
 }
