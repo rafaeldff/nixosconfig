@@ -15,6 +15,8 @@ cd $HOME
 
 [[ ! -e ./bin ]] &&  ln -s ~/homedir/bin ~/bin
 
+[[ ! -e ./.dircolors ]] &&  ln -s ~/homedir/misc/ls-colors-solarized/dircolors ~/.dircolors
+
 if [[ ! -e ./.vim ]] ; then
   echo Setting up vim
   pushd homedir
@@ -38,6 +40,8 @@ if [[ ! -e ./apps/idea ]]; then
   unlink ./apps/idea/current || true
   ln -s $IDEA_VER $HOME/apps/idea/current
 fi
+
+[[ ! -e ./.bashrc ]] &&  ln -s ~/homedir/.bashrc ~/.bashrc
 
 git config --global user.email rafael@rafaelferreira.net
 git config --global user.name "Rafael de F. Ferreira"

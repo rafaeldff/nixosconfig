@@ -26,17 +26,6 @@
 
   boot.cleanTmpDir = true;
 
-  #nixpkgs.config.packageOverrides = super: let self = super.pkgs; in rec
-  #{
-  #  linux_4_1 = super.linux_4_1.override {
-  #    extraConfig = ''
-  #      BRCMFMAC_PCIE y
-  #      BRCMFMAC_USB  y
-  #      BRCMFMAC_SDIO y
-  #    '';
-  #  };
-  #};
-
   networking.hostName = "rffnix"; # Define your hostname.
   networking.networkmanager.enable = true;
   networking.wireless.enable = false;
@@ -92,8 +81,12 @@
     file
     feh
     scrot
+    xclip
+    gawk
+    nettools
 
     # dev
+    gitFull
     oraclejdk8
     idea.idea-community
     (pkgs.lib.overrideDerivation python27Packages.docker_compose (attrs: {
@@ -162,14 +155,10 @@
       sessionCommands = ''
         ${pkgs.xlibs.xsetroot}/bin/xsetroot -cursor_name left_ptr
       '';
-      #${pkgs.feh}/bin/feh --bg-fill ${background}
     };
     windowManager.default = "xmonad";
     windowManager.xmonad.enable = true;
     windowManager.xmonad.enableContribAndExtras = true;
-    #windowManager.xmonad.extraPackages = haskellPackages: [
-    #  haskellPackages.taffybar
-    #];
 
     multitouch.enable = true;
     multitouch.invertScroll = true;
@@ -178,12 +167,6 @@
         Option "FingerHigh" "20"
    '';
 
-    #screenSection = ''
-    #  Option "NoLogo" "TRUE"
-    #'';
-    # Option "DPI" "96 x 96"
-
-    # services.xserver.xkbOptions = "eurosign:e";
     xkbOptions = "terminate:ctrl_alt_bksp, ctrl:nocaps";
   };
 
@@ -196,6 +179,33 @@
       ubuntu_font_family
     ];
   };
+
+  ## Shell
+  # Show git info in bash prompt and display a colorful hostname if using ssh.
+  programs.bash.promptInit = ''
+    export GIT_PS1_SHOWDIRTYSTATE=1
+
+    source ${pkgs.gitAndTools.gitFull}/share/git/contrib/completion/git-prompt.sh
+    __prompt_color="1;32m"
+    # Alternate color for hostname if the generated color clashes with prompt color
+    __alternate_color="1;33m"
+    __hostnamecolor="$__prompt_color"
+    # If logged in with ssh, pick a color derived from hostname
+    if [ -n "$SSH_CLIENT" ]; then
+      __hostnamecolor="1;$(${pkgs.nettools}/bin/hostname | od | tr ' ' '\n' | ${pkgs.gawk}/bin/awk '{total = total + $1}END{print 30 + (total % 6)}')m"
+      # Fixup color clash
+      if [ "$__hostnamecolor" = "$__prompt_color" ]; then
+        __hostnamecolor="$__alternate_color"
+      fi
+    fi
+    __red="1;31m"
+    PS1='\n$(ret=$?; test $ret -ne 0 && printf "\[\e[$__red\]$ret\[\e[0m\] ")\[\e[$__prompt_color\]\u@\[\e[$__hostnamecolor\]\h \[\e[$__prompt_color\]\w$(__git_ps1 " [git:%s]")\[\e[0m\]\n$ '
+  '';
+
+  programs.bash.enableCompletion = true;
+  programs.bash.interactiveShellInit = ''
+    [[ -s "$HOME/.dircolors" ]] && eval `${pkgs.coreutils}/bin/dircolors $HOME/.dircolors`
+  '';
 
 
   ## Users
