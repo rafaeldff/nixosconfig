@@ -41,4 +41,5 @@ fi
 
 git config --global user.email rafael@rafaelferreira.net
 git config --global user.name "Rafael de F. Ferreira"
+git config --global push.default upstream
 
