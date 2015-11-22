@@ -90,6 +90,8 @@
     tree
     ack
     file
+    feh
+    scrot
 
     # dev
     oraclejdk8
@@ -130,6 +132,8 @@
 
     # xmonad
     termite
+    haskellPackages.xmobar
+    dmenu
   ];
 
   # List services that you want to enable:
