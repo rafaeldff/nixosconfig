@@ -120,6 +120,7 @@
       
     }))
     python27Packages.enum34
+    awscli
 
     # networking
     openvpn
