@@ -86,6 +86,7 @@
     gawk
     nettools
     jq
+    unzip
 
     # dev
     gitFull
