@@ -84,6 +84,7 @@
     xclip
     gawk
     nettools
+    jq
 
     # dev
     gitFull
