@@ -30,6 +30,7 @@
   networking.networkmanager.enable = true;
   networking.wireless.enable = false;
   networking.firewall.enable = false;
+  networking.extraHosts ="127.0.0.1 rffnix";
 
   ## Select internationalisation properties.
   # i18n = {
