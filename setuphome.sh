@@ -43,7 +43,10 @@ fi
 
 [[ ! -e ./.bashrc ]] &&  ln -s ~/homedir/.bashrc ~/.bashrc
 
+[[ ! -e ./.gitignore-default ]] &&  ln -s ~/homedir/.gitignore-default ~/.gitignore-default
+
 git config --global user.email rafael@rafaelferreira.net
 git config --global user.name "Rafael de F. Ferreira"
 git config --global push.default upstream
+git config --global core.excludesFile ~/.gitignore-default
 
