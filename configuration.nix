@@ -12,9 +12,11 @@
     ];
 
   hardware.enableAllFirmware = true;
-  # select the right sound card
+  # select the right sound card,
+  # and fix keyboard layout for backticks
   boot.extraModprobeConfig = ''
     options snd_hda_intel enable=0,1
+    options hid_apple iso_layout=0
   '';
 
   boot.kernelPackages =  pkgs.linuxPackages_4_2;
