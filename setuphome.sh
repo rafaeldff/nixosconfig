@@ -1,6 +1,7 @@
 #!  /usr/bin/env bash
 IDEA="ideaIC-15.0.1"
 set -x
+shopt -s nullglob
 cd $HOME
 
 [[ ! -e ./homedir ]] && git clone Dropbox/homedir homedir
@@ -12,6 +13,14 @@ cd $HOME
 [[ ! -e ./.local/share/fonts  ]] && ln -s ~/homedir/.fonts ~/.local/share/fonts
 
 [[ ! -e ./temp ]] &&  mkdir ~/temp
+
+if [[ ! -e ./apps/java/jdk8 ]]; then
+ if test -n "echo ./Downloads/jdk-8*.tar.gz" ; then
+   mkdir -p ./apps/java
+   tar -C ./apps/java/ -xzf ./Downloads/jdk-8*.tar.gz
+   ln -s $HOME/apps/java/jdk1.8.0_* $HOME/apps/java/jdk8
+ fi
+fi
 
 [[ ! -e ./bin ]] &&  ln -s ~/homedir/bin ~/bin
 
