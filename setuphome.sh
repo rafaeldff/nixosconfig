@@ -54,6 +54,19 @@ fi
 
 [[ ! -e ./.gitignore-default ]] &&  ln -s ~/homedir/.gitignore-default ~/.gitignore-default
 
+if [[ ! -e ./apps/hub/current ]]; then
+  HUB_FILE="hub-linux-amd64-2.2.2.tgz"
+  HUB_URI="https://github.com/github/hub/releases/download/v2.2.2/${HUB_FILE}"
+
+  mkdir -p ./apps/hub
+  [[ ! -e /tmp/$HUB_FILE ]] && wget $HUB_URI -o /tmp/$HUB_FILE
+  tar -C ./apps/hub/ -xzf $HUB_FILE
+  HUB_VER=$(ls -1td $HOME/apps/hub/* | head -1)
+  unlink ./apps/hub/current || true
+  ln -s $HUB_VER $HOME/apps/hub/current
+  [[ ! -e $HOME/bin/hub  ]] && ln -s $HOME/apps/hub/current/bin/hub $HOME/bin/hub
+fi
+
 git config --global user.email rafael@rafaelferreira.net
 git config --global user.name "Rafael de F. Ferreira"
 git config --global push.default upstream
