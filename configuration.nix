@@ -47,6 +47,14 @@
   ## Packages
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
+  nixpkgs.config = {
+    allowUnfree = true;
+    chromium = {
+      enablePepperFlash = true;
+      enablePepperPDF = true;
+    };
+  };
+
   environment.systemPackages =
     let
       functools32 = with pkgs; python27Packages.buildPythonPackage rec {
@@ -89,6 +97,7 @@
     nettools
     jq
     unzip
+    sl
 
     # dev
     gitFull
@@ -128,11 +137,16 @@
 
     # networking
     openvpn
+    ldns
+    mtr
 
     # xmonad
     termite
     haskellPackages.xmobar
     dmenu
+
+    # media
+    spotify
   ];
 
   # List services that you want to enable:
@@ -231,5 +245,4 @@
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "15.09";
 
-  nixpkgs.config.allowUnfree = true;
 }

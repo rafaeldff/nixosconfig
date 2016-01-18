@@ -53,6 +53,7 @@ fi
 [[ ! -e ./.bashrc ]] &&  ln -s ~/homedir/.bashrc ~/.bashrc
 
 [[ ! -e ./.gitignore-default ]] &&  ln -s ~/homedir/.gitignore-default ~/.gitignore-default
+[[ ! -e ./.gitconfig ]] &&  ln -s ~/homedir/.gitconfig ~/.gitconfig
 
 if [[ ! -e ./apps/hub/current ]]; then
   HUB_FILE="hub-linux-amd64-2.2.2.tgz"
