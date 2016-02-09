@@ -16,10 +16,9 @@
   # and fix keyboard layout for backticks
   boot.extraModprobeConfig = ''
     options snd_hda_intel enable=0,1
-    options hid_apple iso_layout=0
   '';
 
-  boot.kernelPackages =  pkgs.linuxPackages_4_2;
+  boot.kernelPackages =  pkgs.linuxPackages_4_4;
 
   # Use the gummiboot efi boot loader.
   boot.loader.gummiboot.enable = true;
@@ -100,6 +99,7 @@
     sl
 
     # dev
+    python2
     gitFull
     oraclejdk8
     idea.idea-community
@@ -229,7 +229,7 @@
 
 
   ## Users
-  users.mutableUsers = true;
+  # users.mutableUsers = true;
   users.extraUsers.guest = {
     isNormalUser = true;
     name = "rafael";
