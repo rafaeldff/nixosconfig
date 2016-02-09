@@ -6,6 +6,8 @@ cd $HOME
 
 [[ ! -e ./homedir ]] && git clone Dropbox/homedir homedir
 
+[[ ! -e ./.bashrc ]] && ln -s ~/homedir/.bashrc ~/.bashrc
+
 [[ ! -e ./.xmonad ]] &&  mkdir ~/.xmonad
 
 [[ ! -e ./.xmonad/xmonad.hs  ]] && ln -s ~/homedir/.xmonad/xmonad.hs ~/.xmonad/xmonad.hs
