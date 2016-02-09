@@ -50,8 +50,6 @@ if [[ ! -e ./apps/idea ]]; then
   ln -s $IDEA_VER $HOME/apps/idea/current
 fi
 
-[[ ! -e ./.bashrc ]] &&  ln -s ~/homedir/.bashrc ~/.bashrc
-
 [[ ! -e ./.gitignore-default ]] &&  ln -s ~/homedir/.gitignore-default ~/.gitignore-default
 [[ ! -e ./.gitconfig ]] &&  ln -s ~/homedir/.gitconfig ~/.gitconfig
 
