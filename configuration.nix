@@ -72,6 +72,7 @@
     git
     dropbox
     rxvt_unicode
+    xlockmore
 
     # browsers
     chromium
@@ -147,6 +148,9 @@
 
     # media
     spotify
+
+    # nixos meta
+    nix-prefetch-scripts
   ];
 
   # List services that you want to enable:
