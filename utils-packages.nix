@@ -16,6 +16,10 @@
     sl
     xlsfonts
     ctags
+
+    # networking
+    mtr
+    ldns
     ];
 }
 

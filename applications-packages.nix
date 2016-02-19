@@ -6,6 +6,7 @@
     chromium
     firefox
     spotify
+    evince
     ];
 
   nixpkgs.config = {
