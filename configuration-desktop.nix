@@ -12,7 +12,7 @@
       # Base version of kernel and the OS
       ./platform.nix
 
-      # Mac hardware specific tuning (change for different hardware)
+      # Hardware specific tuning (change for different hardware)
       ./desktop.nix
 
       # How to configure networking (change if you want gnome to take care of it) 
