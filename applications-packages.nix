@@ -7,6 +7,7 @@
     firefox
     spotify
     evince
+    vlc
     ];
 
   nixpkgs.config = {
