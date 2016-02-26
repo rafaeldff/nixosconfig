@@ -1,6 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, iproute, bridge-utils, devicemapper
+, btrfsProgs, iptables, e2fsprogs, xz, utillinux
+, enableLxc ? false, lxc, ... }:
 
-with pkgs.lib;
 
 {
   virtualisation.docker.enable = true; 
@@ -92,4 +93,29 @@ with pkgs.lib;
       mydockerpty
       mydockercompose
     ];
+
+  nixpkgs.config.packageOverrides = pkgs:
+    {
+      docker = pkgs.lib.overrideDerivation pkgs.docker (attrs: {
+        version = "1.10.2";
+        name = "docker-1.10.2";
+        src = pkgs.fetchFromGitHub {
+          owner = "docker";
+          repo = "docker";
+          rev = "v1.10.2";
+          sha256 = "0q07gq2kv5zhxm7apwf52pgfm8pb2zn2pjb40fd4gpmajp5yw2d3";
+        };
+        installPhase = ''
+          install -Dm755 ./bundles/1.10.2/dynbinary/docker-1.10.2 $out/libexec/docker/docker
+          install -Dm755 ./bundles/1.10.2/dynbinary/dockerinit-1.10.2 $out/libexec/docker/dockerinit
+          makeWrapper $out/libexec/docker/docker $out/bin/docker \
+            --prefix PATH : "${pkgs.iproute}/sbin:sbin:${pkgs.iptables}/sbin:${pkgs.e2fsprogs}/sbin:${pkgs.xz}/bin:${pkgs.utillinux}/bin:${pkgs.stdenv.lib.optionalString config.virtualisation.lxc.enable "${lxc}/bin"}"
+          # systemd
+          install -Dm644 ./contrib/init/systemd/docker.service $out/etc/systemd/system/docker.service
+          # completion
+          install -Dm644 ./contrib/completion/bash/docker $out/share/bash-completion/completions/docker
+          install -Dm644 ./contrib/completion/zsh/_docker $out/share/zsh/site-functions/_docker
+        '';
+      });
+   };
 }
