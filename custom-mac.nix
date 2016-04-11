@@ -3,6 +3,7 @@
 {
   networking.hostName = "rffnix"; # Define your hostname.
   networking.extraHosts ="127.0.0.1 rffnix";
+  networking.networkmanager.insertNameservers = ["8.8.8.8" "8.8.4.4"];
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
