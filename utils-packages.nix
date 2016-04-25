@@ -16,6 +16,7 @@
     sl
     xlsfonts
     ctags
+    zip
 
     # networking
     mtr

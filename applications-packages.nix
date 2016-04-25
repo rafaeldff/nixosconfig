@@ -8,6 +8,7 @@
     spotify
     evince
     vlc
+    libreoffice
     ];
 
   nixpkgs.config = {
