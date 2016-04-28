@@ -11,7 +11,6 @@
     desktopManager.default = "none";
     desktopManager.xterm.enable = false;
     displayManager = {
-      desktopManagerHandlesLidAndPower = false;
       lightdm.enable = true;
       sessionCommands = ''
         ${pkgs.xlibs.xsetroot}/bin/xsetroot -cursor_name left_ptr
