@@ -17,6 +17,9 @@
 
       # How to configure networking (change if you want gnome to take care of it) 
       ./netmanager.nix
+      
+      # vpn
+      ./vpn.nix
 
       # Lots of packages!
       ./base-packages.nix
