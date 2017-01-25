@@ -7,6 +7,6 @@
     wget
     git
     dropbox
-    vimNox
+    vim
   ];
 }

@@ -6,6 +6,7 @@ in
 {
   environment.systemPackages =
     with pkgs; [
+    vimHugeX
     chromium
     firefox
     (lib.overrideDerivation spotify (attrs: {
