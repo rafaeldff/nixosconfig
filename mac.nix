@@ -11,11 +11,10 @@
   '';
 
   # Use the gummiboot efi boot loader.
-  boot.loader.gummiboot.enable = true;
-  boot.loader.gummiboot.timeout = 5;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.timeout = 5;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.cleanTmpDir = true;
-  
   # configure multitouch options 
   services.xserver = {
     multitouch.enable = true;
