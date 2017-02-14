@@ -11,5 +11,6 @@
     oraclejdk8
     idea.idea-community
     awscli
+    gitAndTools.hub
     ];
 }
