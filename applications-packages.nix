@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 let
-  spotifyVersion = "1.0.36.120.g536a862f-20";
+  #spotifyVersion = "1.0.36.120.g536a862f-20";
+  spotifyVersion =  "1.0.57.474.gca9c9538-30";
 in
 {
   environment.systemPackages =
@@ -14,7 +15,7 @@ in
       src =
         fetchurl {
           url = "http://repository-origin.spotify.com/pool/non-free/s/spotify-client/spotify-client_${spotifyVersion}_amd64.deb";
-          sha256 = "03r4hz4x4f3zmp6dsv1n72y5q01d7mfqvaaxqvd587a5561gahf0";
+          sha256 = "fe46f2084c45c756bee366f744d2821d79e82866b19942e30bb2a20c1e597437";
         };
     }))
     evince
