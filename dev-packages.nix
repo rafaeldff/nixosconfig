@@ -12,5 +12,8 @@
     idea.idea-community
     awscli
     gitAndTools.hub
+
+    # clojure
+    leiningen
     ];
 }
