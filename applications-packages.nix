@@ -21,6 +21,7 @@ in
     evince
     vlc
     libreoffice
+    atom
     ];
 
   nixpkgs.config = {
