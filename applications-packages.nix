@@ -10,14 +10,15 @@ in
     vimHugeX
     chromium
     firefox
-    (lib.overrideDerivation spotify (attrs: {
-       name = "spotify-${spotifyVersion}";
-      src =
-        fetchurl {
-          url = "http://repository-origin.spotify.com/pool/non-free/s/spotify-client/spotify-client_${spotifyVersion}_amd64.deb";
-          sha256 = "8fbe821fd516f5cd77eb2d5085e5acd8f1852b97f7b7294846fcc57b810ef515";
-        };
-    }))
+    #(lib.overrideDerivation spotify (attrs: {
+       #name = "spotify-${spotifyVersion}";
+      #src =
+        #fetchurl {
+          #url = "http://repository-origin.spotify.com/pool/non-free/s/spotify-client/spotify-client_${spotifyVersion}_amd64.deb";
+          #sha256 = "8fbe821fd516f5cd77eb2d5085e5acd8f1852b97f7b7294846fcc57b810ef515";
+        #};
+    #}))
+    spotify
     evince
     vlc
     libreoffice
