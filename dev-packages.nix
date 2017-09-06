@@ -15,5 +15,10 @@
 
     # clojure
     leiningen
+
+    # virtualization
+    vagrant
     ];
+
+    virtualisation.virtualbox.host.enable = true;
 }
