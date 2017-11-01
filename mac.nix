@@ -10,6 +10,8 @@
     options snd_hda_intel enable=0,1
   '';
 
+  hardware.bluetooth.enable = true;
+
   # Use the gummiboot efi boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.timeout = 5;
@@ -24,6 +26,9 @@
         Option "FingerHigh" "20"
    '';
   };
+
+  services.xserver.config = " # adding another comment";
+
 }
 
 
