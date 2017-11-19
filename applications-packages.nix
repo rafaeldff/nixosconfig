@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  #spotifyVersion =  "1.0.57.474.gca9c9538-30";
-  spotifyVersion =  "1.0.59.395.ge6ca9946-18";
+  #spotifyVersion =  "1.0.59.395.ge6ca9946-18";
 in
 {
   environment.systemPackages =
