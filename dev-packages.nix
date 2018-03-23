@@ -8,8 +8,8 @@
     # dev
     python2
     gitFull
-    oraclejdk8
-    idea.idea-community
+    oraclejdk9
+    idea.idea-ultimate
     awscli
     gitAndTools.hub
 
