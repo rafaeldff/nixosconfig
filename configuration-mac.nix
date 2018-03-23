@@ -37,5 +37,8 @@
      
       # host/user specific settings:
       ./custom-mac.nix
+
+      # nubank
+      ./nu.nix
     ];
 }
