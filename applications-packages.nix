@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  #spotifyVersion = "1.0.59.395.ge6ca9946-18";
-  spotifyVersion  = "1.0.69.336.g7edcc575-39";
+  spotifyVersion  = "1.0.77.338.g758ebd78-41";
 in
 {
   environment.systemPackages =
@@ -10,15 +9,15 @@ in
     vimHugeX
     chromium
     firefox
-    #(lib.overrideDerivation spotify (attrs: {
-       #name = "spotify-${spotifyVersion}";
-      #src =
-        #fetchurl {
-          #url = "http://repository-origin.spotify.com/pool/non-free/s/spotify-client/spotify-client_${spotifyVersion}_amd64.deb";
-          #sha256 = "0bh2q7g478g7wj661fypxcbhrbq87zingfyigg7rz1shgsgwc3gd";
-        #};
-    #}))
-    spotify
+    (lib.overrideDerivation spotify (attrs: {
+       name = "spotify-${spotifyVersion}";
+      src =
+        fetchurl {
+          url = "http://repository-origin.spotify.com/pool/non-free/s/spotify-client/spotify-client_${spotifyVersion}_amd64.deb";
+          sha256 = "1971jc0431pl8yixpl37ryl2l0pqdf0xjvkg59nqdwj3vbdx5606";
+        };
+    }))
+    #spotify
     evince
     vlc
     libreoffice
