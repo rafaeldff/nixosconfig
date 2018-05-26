@@ -28,6 +28,7 @@
       ./applications-packages.nix
       ./dev-packages.nix
       ./docker-packages.nix
+      ./k8s.nix
 
       # XMonad/X settings
       ./xmonad-settings.nix 
