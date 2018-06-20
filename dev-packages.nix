@@ -26,5 +26,11 @@
     vagrant
     ];
 
+    nixpkgs.config.packageOverrides = pkgs: rec {
+      leiningen = pkgs.leiningen.override {
+        jdk = pkgs.oraclejdk10;
+      };
+    };
+
     virtualisation.virtualbox.host.enable = true;
 }
