@@ -25,6 +25,9 @@
 
     # virtualization
     vagrant
+
+    # infosec
+    nssTools
     ];
 
     nixpkgs.config.packageOverrides = pkgs: rec {
