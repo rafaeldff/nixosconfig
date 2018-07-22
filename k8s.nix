@@ -17,6 +17,7 @@ in
     }))
     cfssl
 		kubernetes
+    minikube
     #(kubernetes.overrideAttrs (old: rec {
       #version = "1.10.3"; 
 			#src = fetchFromGitHub {
