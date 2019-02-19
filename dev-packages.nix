@@ -8,7 +8,7 @@
     # dev
     python2
     gitFull
-    oraclejdk10
+    openjdk10
     idea.idea-ultimate
     #(idea.idea-ultimate.overrideAttrs (old: rec {
       #version = "2018.1.4";
@@ -32,7 +32,7 @@
 
     nixpkgs.config.packageOverrides = pkgs: rec {
       leiningen = pkgs.leiningen.override {
-        jdk = pkgs.oraclejdk10;
+        jdk = pkgs.openjdk10;
       };
     };
 
