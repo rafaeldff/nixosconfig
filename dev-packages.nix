@@ -30,11 +30,11 @@
     nssTools
     ];
 
-    nixpkgs.config.packageOverrides = pkgs: rec {
-      leiningen = pkgs.leiningen.override {
-        jdk = pkgs.openjdk10;
-      };
-    };
+    #nixpkgs.config.packageOverrides = pkgs: rec {
+      #leiningen = pkgs.leiningen.override {
+        #jdk = pkgs.openjdk10;
+      #};
+    #};
 
     virtualisation.virtualbox.host.enable = true;
 }
