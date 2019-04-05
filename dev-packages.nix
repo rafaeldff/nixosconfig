@@ -8,7 +8,7 @@
     # dev
     python2
     gitFull
-    openjdk10
+    openjdk11
     idea.idea-ultimate
     #(idea.idea-ultimate.overrideAttrs (old: rec {
       #version = "2018.1.4";

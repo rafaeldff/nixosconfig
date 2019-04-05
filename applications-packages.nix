@@ -24,10 +24,10 @@ in
     atom
     ];
 
-  nixpkgs.config = {
-    chromium = {
-      enablePepperPDF = true;
-    };
-  };
+  #nixpkgs.config = {
+    #chromium = {
+      #enablePepperPDF = true;
+    #};
+  #};
 }
 
