@@ -1,8 +1,13 @@
 { config, pkgs, ... }:
 
-{
 
+{
   environment.systemPackages =
+    let
+      myclojure = pkgs.clojure.overrideAttrs (oldAttrs: rec {
+        version = "1.10.0.442";
+      });
+    in
     with pkgs; [
     
     # dev
@@ -20,7 +25,7 @@
     awscli
     gitAndTools.hub
 
-    # clojure
+    myclojure
     leiningen
 
     # virtualization
