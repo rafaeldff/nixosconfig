@@ -33,6 +33,8 @@
 
     # infosec
     nssTools
+
+    vscode
     ];
 
     #nixpkgs.config.packageOverrides = pkgs: rec {
