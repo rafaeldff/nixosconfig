@@ -8,6 +8,9 @@ in {
     #yubikey
     yubioath-desktop
     yubikey-manager
+
+    # vpn
+    sshuttle
   ];
 
   services.pcscd.enable = true;
