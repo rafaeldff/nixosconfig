@@ -8,4 +8,5 @@
   system.stateVersion = "15.09";
   
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.oraclejdk.accept_license = true;
 }

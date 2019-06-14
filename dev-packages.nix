@@ -14,6 +14,7 @@
     python2
     gitFull
     openjdk11
+    visualvm
     idea.idea-ultimate
     #(idea.idea-ultimate.overrideAttrs (old: rec {
       #version = "2018.1.4";
@@ -35,6 +36,7 @@
     nssTools
 
     vscode
+    glibc
     ];
 
     #nixpkgs.config.packageOverrides = pkgs: rec {
