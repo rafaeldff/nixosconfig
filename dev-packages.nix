@@ -29,6 +29,8 @@
     myclojure
     leiningen
 
+    linuxPackages.perf
+
     # virtualization
     vagrant
 
