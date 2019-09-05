@@ -13,7 +13,6 @@
     gawk
     jq
     unzip
-    sl
     xlsfonts
     ctags
     zip
