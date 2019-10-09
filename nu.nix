@@ -14,5 +14,14 @@ in {
   ];
 
   services.pcscd.enable = true;
+
+  programs = {
+    chromium = {
+      enable = true;
+      extraOpts = {
+        AutoSelectCertificateForUrls = ["{\"pattern\":\"[*.]nubank.com.br\",\"filter\":{\"ISSUER\":{\"CN\":\"nubanker\"}}}"];
+      };
+    };
+  };
 }
 
