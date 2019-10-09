@@ -39,6 +39,14 @@
 
     vscode
     glibc
+
+    # web ui
+    sassc
+    sass
+    phantomjs
+    nodejs
+
+    ncurses.dev
     ];
 
     #nixpkgs.config.packageOverrides = pkgs: rec {
