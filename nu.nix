@@ -14,6 +14,8 @@ in {
   ];
 
   services.pcscd.enable = true;
+  
+  hardware.u2f.enable = true;
 
   programs = {
     chromium = {
