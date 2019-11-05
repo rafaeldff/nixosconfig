@@ -41,5 +41,8 @@
 
       # nubank
       ./nu.nix
+
+      # locale stuff
+      ./brasil.nix
     ];
 }
