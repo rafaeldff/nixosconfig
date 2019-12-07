@@ -6,7 +6,7 @@
     with pkgs; [
     wget
     git
-    dropbox
+    #dropbox
     vim
   ];
 }
