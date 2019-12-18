@@ -47,6 +47,8 @@
     nodejs
 
     ncurses.dev
+
+    confluent-platform
     ];
 
     #nixpkgs.config.packageOverrides = pkgs: rec {
