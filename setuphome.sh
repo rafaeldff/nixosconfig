@@ -45,6 +45,10 @@ if [[ ! -e ./.vim ]] ; then
   [[ ! -e ./.gvimrc ]] &&  ln -s ~/homedir/.vim/gvimrc ~/.gvimrc
 fi
 
+[[ ! -e ./.clojure ]] && mkdir ~/.clojure
+
+[[ ! -e ./.clojure/deps.edn ]] &&  ln -s ~/homedir/.clojure/deps.edn ~/.clojure/deps.edn
+
 #if [[ ! -e ./apps/idea ]]; then
   #IDEA_FILE="ideaIC-15.0.1.tar.gz"
   #IDEA_URI="https://d1opms6zj7jotq.cloudfront.net/idea/${IDEA_FILE}"
