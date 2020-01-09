@@ -16,6 +16,7 @@
     xlsfonts
     ctags
     zip
+    bat
 
     # networking
     mtr
