@@ -22,5 +22,7 @@
     mtr
     ldns
     ];
+
+  programs.ssh.startAgent = true;
 }
 
