@@ -24,12 +24,12 @@
   boot.cleanTmpDir = true;
   # configure multitouch options 
   services.xserver = {
-    multitouch.enable = true;
-    multitouch.invertScroll = true;
-    multitouch.ignorePalm = true;
-    multitouch.additionalOptions = ''
-        Option "FingerHigh" "20"
-   '';
+    #multitouch.enable = true;
+    #multitouch.invertScroll = true;
+    #multitouch.ignorePalm = true;
+    #multitouch.additionalOptions = ''
+        #Option "FingerHigh" "20"
+   #'';
   };
 
   services.xserver.config = " # adding another comment";

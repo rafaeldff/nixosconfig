@@ -9,7 +9,7 @@
     enable = true;
 
     #desktopManager.default = "none";
-    services.xserver.displayManager.defaultSession = "none+xmonad";
+    displayManager.defaultSession = "none+xmonad";
     desktopManager.xterm.enable = false;
     displayManager = {
       lightdm.enable = true;
