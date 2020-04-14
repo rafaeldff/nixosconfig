@@ -24,6 +24,7 @@
   boot.cleanTmpDir = true;
   # configure multitouch options 
   services.xserver = {
+    libinput.enable = true;
     #multitouch.enable = true;
     #multitouch.invertScroll = true;
     #multitouch.ignorePalm = true;
