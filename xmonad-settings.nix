@@ -8,7 +8,8 @@
   services.xserver = {
     enable = true;
 
-    desktopManager.default = "none";
+    #desktopManager.default = "none";
+    services.xserver.displayManager.defaultSession = "none+xmonad";
     desktopManager.xterm.enable = false;
     displayManager = {
       lightdm.enable = true;
@@ -16,7 +17,7 @@
         ${pkgs.xlibs.xsetroot}/bin/xsetroot -cursor_name left_ptr
       '';
     };
-    windowManager.default = "xmonad";
+    #windowManager.default = "xmonad";
     windowManager.xmonad.enable = true;
     windowManager.xmonad.enableContribAndExtras = true;
 

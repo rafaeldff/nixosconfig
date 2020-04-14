@@ -27,4 +27,5 @@
   programs.bash.interactiveShellInit = ''
     [[ -s "$HOME/.dircolors" ]] && eval `${pkgs.coreutils}/bin/dircolors $HOME/.dircolors`
   '';
+  environment.homeBinInPath = true;
 }
