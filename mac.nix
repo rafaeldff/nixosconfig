@@ -23,8 +23,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.cleanTmpDir = true;
   # configure multitouch options 
-  services.xserver = {
-    libinput.enable = true;
+  services.xserver.libinput = {
+    enable = true;
+    accelSpeed = "0.2";
+    naturalScrolling = true;
     #multitouch.enable = true;
     #multitouch.invertScroll = true;
     #multitouch.ignorePalm = true;
