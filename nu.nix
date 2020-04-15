@@ -11,6 +11,8 @@ in {
 
     # vpn
     sshuttle
+
+    zoom-us
   ];
 
   services.pcscd.enable = true;
