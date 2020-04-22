@@ -44,5 +44,8 @@
 
       # locale stuff
       ./brasil.nix
+
+      # system options (systemd, journald, etc)
+      ./system.nix
     ];
 }
