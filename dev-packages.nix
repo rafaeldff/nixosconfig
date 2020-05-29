@@ -39,6 +39,7 @@
 
     vscode
     glibc
+    gnumake
 
     # web ui
     sassc
