@@ -29,6 +29,8 @@
     myclojure
     leiningen
 
+    clj-kondo
+
     linuxPackages.perf
 
     # virtualization
