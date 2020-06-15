@@ -23,13 +23,14 @@
         #sha256 = "1qb425wg4690474g348yizhkcqcgigz2synp4blcfv4p0pg79ri6"; 
       #};
     #}))
+    mat
     awscli
     gitAndTools.hub
 
     myclojure
     leiningen
 
-    clj-kondo
+    #clj-kondo
 
     linuxPackages.perf
 
