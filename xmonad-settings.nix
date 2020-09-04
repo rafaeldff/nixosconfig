@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # auto-mount flash drives
-  services.udisks2.enable = true;
-  
   # xserver
   services.xserver = {
     enable = true;
