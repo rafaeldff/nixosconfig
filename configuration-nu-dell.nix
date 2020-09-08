@@ -2,9 +2,25 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, ... }:
 
+let
+  pkgs = (fetchGit {
+    name = "rafaeldff-nixos-2020.03";
+    url = https://github.com/rafaeldff/nixpkgs.git;
+    ref = "refs/heads/nixos-20.03";
+    rev = "9743458d0c1609737eac34a29c18174f8bdd2415";
+  });
+in
 {
+  nixpkgs.pkgs = import "${pkgs}" {
+    inherit (config.nixpkgs) config;
+  };
+
+  nix.nixPath = [
+    "nixpkgs=${pkgs}"
+    "nixos-config=/etc/nixos/configuration.nix"
+  ];
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
