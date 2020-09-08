@@ -6,11 +6,11 @@
 
   hardware.bluetooth.enable = true;
   sound.enable = true;
-  # hardware.pulseaudio = {
-  #   enable = true;
-  #   package = pkgs.pulseaudioFull;
-  # };
-  # environment.systemPackages = [ pkgs.pavucontrol ];
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
+  environment.systemPackages = [ pkgs.pavucontrol ];
 
   # Use the systemd-boot EFI bootloader
   boot.loader.systemd-boot.enable = true;
