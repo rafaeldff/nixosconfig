@@ -14,6 +14,7 @@
     python2
     gitFull
     openjdk11
+    maven
     visualvm
     idea.idea-ultimate
     #(idea.idea-ultimate.overrideAttrs (old: rec {
@@ -25,7 +26,7 @@
     #}))
     # mat
     awscli
-    gitAndTools.hub
+    github-cli
 
     clojure
     leiningen
