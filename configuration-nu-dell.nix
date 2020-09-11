@@ -9,7 +9,7 @@ let
     name = "rafaeldff-nixos-2020.03";
     url = https://github.com/rafaeldff/nixpkgs.git;
     ref = "refs/heads/nixos-20.03";
-    rev = "9743458d0c1609737eac34a29c18174f8bdd2415";
+    rev = "9f1dde149281bd01eb7cf6ffaee0f391c54eec7b";
   });
 in
 {

@@ -15,6 +15,7 @@ in {
 
     zoom-us
 
+    openfortivpn
   ];
 
   services.pcscd.enable = true;
