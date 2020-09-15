@@ -9,6 +9,7 @@ in {
     yubioath-desktop
     yubikey-manager
     gnupg # this is gpg >= 2
+    nss.tools
 
     # vpn
     sshuttle
@@ -16,6 +17,12 @@ in {
     zoom-us
 
     openfortivpn
+
+    #mobile
+    git-lfs
+
+    #nucli
+    gettext
   ];
 
   services.pcscd.enable = true;
