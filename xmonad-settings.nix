@@ -12,6 +12,8 @@
       lightdm.enable = true;
       sessionCommands = ''
         ${pkgs.xlibs.xsetroot}/bin/xsetroot -cursor_name left_ptr
+        echo "in nixos sessionCommands" | systemctl-cat -t debug_init
+        source $HOME/.profile
       '';
     };
     #windowManager.default = "xmonad";
