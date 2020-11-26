@@ -69,6 +69,9 @@ fi
 [[ ! -e ./.gitignore-default ]] &&  ln -s ~/homedir/.gitignore-default ~/.gitignore-default
 [[ ! -e ./.gitconfig ]] &&  ln -s ~/homedir/.gitconfig ~/.gitconfig
 
+[[ ! -e $HOME/.datomic/dev-local.edn ]] && ln -s ~/homedir/dev-local.edn ~/.datomic/dev-local.edn
+
+
 #if [[ ! -e ./apps/hub/current ]]; then
   #HUB_FILE="hub-linux-amd64-2.2.2.tgz"
   #HUB_URI="https://github.com/github/hub/releases/download/v2.2.2/${HUB_FILE}"
