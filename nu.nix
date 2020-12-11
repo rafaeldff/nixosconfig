@@ -28,7 +28,7 @@ in {
   services.pcscd.enable = true;
   programs.gnupg.agent.enable = true;
   
-  hardware.u2f.enable = true;
+  #hardware.u2f.enable = true;
 
   programs = {
     chromium = {

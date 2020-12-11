@@ -5,22 +5,24 @@
 { config, ... }:
 
 let
-  pkgs = (fetchGit {
-    name = "rafaeldff-nixos-2020.03";
-    url = https://github.com/rafaeldff/nixpkgs.git;
-    ref = "refs/heads/nixos-20.03";
-    rev = "9f1dde149281bd01eb7cf6ffaee0f391c54eec7b";
-  });
+  #pkgs = (fetchGit {
+    #name = "rafaeldff-nixos-2020.09";
+    #url = https://github.com/rafaeldff/nixpkgs.git;
+    #ref = "refs/heads/nixos-20.09";
+    #rev = "20f316c5b4c26c9945f8fca70ca4a51a1df42c20";
+  #});
 in
 {
-  nixpkgs.pkgs = import "${pkgs}" {
-    inherit (config.nixpkgs) config;
-  };
+  #nixpkgs.pkgs = import "${pkgs}" {
+    #inherit (config.nixpkgs) config;
+  #};
 
-  nix.nixPath = [
-    "nixpkgs=${pkgs}"
-    "nixos-config=/etc/nixos/configuration.nix"
-  ];
+  #nix.nixPath = [
+    #"nixpkgs=${pkgs}"
+    #"nixos-config=/etc/nixos/configuration.nix"
+  #];
+
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
