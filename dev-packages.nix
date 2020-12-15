@@ -4,9 +4,6 @@
 {
   environment.systemPackages =
     let
-      myclojure = pkgs.clojure.overrideAttrs (oldAttrs: rec {
-        version = "1.10.0.442";
-      });
     in
     with pkgs; [
     
@@ -28,7 +25,7 @@
     awscli
     github-cli
 
-    clojure
+    (clojure.override {jdk = pkgs.jdk11;})
     leiningen
 
     #clj-kondo
