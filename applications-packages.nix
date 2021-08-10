@@ -8,7 +8,7 @@ in
     with pkgs; [
     vimHugeX
     chromium
-    firefox
+    firefox-bin
     #(lib.overrideDerivation spotify (attrs: {
        #name = "spotify-${spotifyVersion}";
       #src =
