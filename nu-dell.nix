@@ -20,8 +20,10 @@
   # configure multitouch options 
   services.xserver.libinput = {
     enable = true;
-    accelSpeed = "0.2";
-    naturalScrolling = true;
+    touchpad = {
+      accelSpeed = "0.2";
+      naturalScrolling = true;
+    };
     #multitouch.enable = true;
     #multitouch.invertScroll = true;
     #multitouch.ignorePalm = true;
