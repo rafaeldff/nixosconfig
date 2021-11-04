@@ -37,6 +37,9 @@
 
   # auto-mount flash drives
   services.udisks2.enable = true;
+
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.brlaser ];
 }
 
 
