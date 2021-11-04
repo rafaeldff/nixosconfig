@@ -17,6 +17,7 @@
     ctags
     zip
     bat
+    dutree
 
     # networking
     mtr
