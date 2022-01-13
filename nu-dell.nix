@@ -21,7 +21,7 @@
   services.xserver.libinput = {
     enable = true;
     touchpad = {
-      accelSpeed = "0.2";
+      #accelSpeed = "0.2";
       naturalScrolling = true;
     };
     #multitouch.enable = true;
