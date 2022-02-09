@@ -18,6 +18,7 @@
     zip
     bat
     dutree
+    pv
 
     # networking
     mtr
