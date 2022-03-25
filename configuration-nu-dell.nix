@@ -61,7 +61,8 @@ in
       ./nu.nix
 
       # locale stuff
-      ./de.nix
+      #./de.nix
+      ./brasil.nix
 
       # system options (systemd, journald, etc)
       ./system.nix
