@@ -30,8 +30,8 @@ in
       # Base version of kernel and the OS
       ./platform.nix
 
-      # Mac hardware specific tuning (change for different hardware)
-      ./nu-fw.nix
+      # hardware specific tuning (change for different hardware)
+      ./fw.nix
 
       # How to configure networking (change if you want gnome to take care of it) 
       ./netmanager.nix
@@ -56,9 +56,6 @@ in
      
       # host/user specific settings:
       ./custom-fw.nix
-
-      # nubank
-      # ./nu.nix
 
       # locale stuff
       ./de.nix
