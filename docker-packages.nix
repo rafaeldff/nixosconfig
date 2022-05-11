@@ -9,7 +9,7 @@
   environment.systemPackages =
     with pkgs; [
       #python27Packages.docker
-      docker_compose
+      docker-compose
     ];
 
 }

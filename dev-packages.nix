@@ -13,7 +13,7 @@
     openjdk11
     maven
     visualvm
-    idea.idea-ultimate
+    jetbrains.idea-ultimate
     #(idea.idea-ultimate.overrideAttrs (old: rec {
       #version = "2018.1.4";
       #src = fetchurl {
@@ -43,13 +43,7 @@
     gnumake
 
     # web ui
-    sassc
-    sass
-    phantomjs
-    nodejs
-
     ncurses.dev
-
     confluent-platform
     ];
 
