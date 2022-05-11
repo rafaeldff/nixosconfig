@@ -9,6 +9,6 @@
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so look for interface config on
   # hardware-specific config file (e.g. nu-dell.nix)
-  networking.useDHCP = false;
+  networking.useDHCP = lib.mkDefault false;
 
 }
