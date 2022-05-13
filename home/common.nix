@@ -13,6 +13,8 @@
     ./dev-packages.nix
     #XXX docker-packages
     ./k8s.nix
+    ./xmonad-environment-packages.nix
+    ./xmonad-settings.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
