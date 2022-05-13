@@ -34,6 +34,8 @@ if [[ ! -e ./.vim ]] ; then
   [[ ! -e ./.vim ]] &&  ln -s ~/homedir/.vim ~/.vim
   [[ ! -e ./.vimrc ]] &&  ln -s ~/homedir/.vim/vimrc ~/.vimrc
   [[ ! -e ./.gvimrc ]] &&  ln -s ~/homedir/.vim/gvimrc ~/.gvimrc
+  [[ ! -e ./.vim/backup ]] &&  mkdir ./.vim/backup
+  [[ ! -e ./.vim/swp ]] &&  mkdir ./.vim/swp
 fi
 
 [[ ! -e ./.clojure ]] && mkdir ~/.clojure
