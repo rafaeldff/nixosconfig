@@ -63,5 +63,8 @@ in
 
       # system options (systemd, journald, etc)
       ./system.nix
+
+      # import home-manager
+      <home-manager/nixos>
     ];
 }
