@@ -66,5 +66,6 @@ in
 
       # import home-manager
       <home-manager/nixos>
+      ./home-manager.nix
     ];
 }
