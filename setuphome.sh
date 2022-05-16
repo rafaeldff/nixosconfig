@@ -1,9 +1,16 @@
 #!  /usr/bin/env bash
 set -x
 shopt -s nullglob
-cd $HOME
 
-[[ ! -e ./homedir ]] && git clone Dropbox/homedir homedir
+if grep -Eqi 'Name="?Ubuntu"?' /etc/os-release; then
+  echo Loading ubuntu settings;
+  ./ubuntu/install.sh
+fi
+
+cd $HOME
+echo Setting up Home
+
+[[ ! -e ./homedir ]] && git clone git@github.com:rafaeldff/homedir homedir
 
 [[ ! -e ./.bashrc ]] && ln -s ~/homedir/.bashrc ~/.bashrc
 
@@ -55,8 +62,18 @@ fi
 
 
 
-git config --global user.email rafael@rafaelferreira.net
-git config --global user.name "Rafael de F. Ferreira"
+if grep -Eqi 'Name="?Ubuntu"?' /etc/os-release
+then
+  echo "Config git for work laptop"
+  git config --global user.email rafael.ferreira@nubank.com.br
+  git config --global user.name "Rafael de F. Ferreira"
+else
+  echo "Config git for personal  laptop"
+  git config --global user.email rafael@rafaelferreira.net
+  git config --global user.name "Rafael de F. Ferreira"
+fi
+	
 git config --global push.default upstream
 git config --global core.excludesFile ~/.gitignore-default
+
 
