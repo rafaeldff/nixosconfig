@@ -25,14 +25,14 @@
   ];
 
   # Various options that are specific for this machine/user.
-  xsession.importedVariables = [
-      "DBUS_SESSION_BUS_ADDRESS"
-      "DISPLAY"
-      #"SSH_AUTH_SOCK" #XXX this was breaking .xprofile initalization
-      "XAUTHORITY"
-      "XDG_DATA_DIRS"
-      "XDG_RUNTIME_DIR"
-      "XDG_SESSION_ID"
-    ];
+  #xsession.importedVariables = [
+  #    "DBUS_SESSION_BUS_ADDRESS"
+  #    "DISPLAY"
+  #    #"SSH_AUTH_SOCK" #XXX this was breaking .xprofile initalization
+  #    "XAUTHORITY"
+  #    "XDG_DATA_DIRS"
+  #    "XDG_RUNTIME_DIR"
+  #    "XDG_SESSION_ID"
+  #  ];
 
 }
