@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+GDM_XSESSIONS_DIR="/usr/share/xsessions/"
+sudo cp default.desktop $GDM_XSESSIONS_DIR
+
+sudo apt install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3 cargo
+cargo install alacritty 
+
