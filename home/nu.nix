@@ -12,7 +12,7 @@
     nss.tools
 
 
-    zoom-us
+    #zoom-us
 
     # vpn
     # sshuttle #
