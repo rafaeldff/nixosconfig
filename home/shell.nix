@@ -8,6 +8,7 @@
     historySize = 1000000;
     sessionVariables = {
       HISTTIMEFORMAT = "%F %T ";
+      XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS";
       # note: shopt histappend is on by default.
     };
     shellAliases = {
@@ -39,6 +40,15 @@
 
       if [ $HOME/bin/marks.sh ]; then
         source $HOME/bin/marks.sh;
+      fi
+
+      # enable bash completion in interactive shells
+      if ! shopt -oq posix; then
+        if [ -f /usr/share/bash-completion/bash_completion ]; then
+          . /usr/share/bash-completion/bash_completion
+        elif [ -f /etc/bash_completion ]; then
+          . /etc/bash_completion
+        fi
       fi
     '';
   };
