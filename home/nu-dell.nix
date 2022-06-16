@@ -1,4 +1,4 @@
-{ ... }:
+{ config, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
@@ -24,13 +24,7 @@
     ./nu.nix
   ];
 
-  home.keyboard = {
-    layout = "us";
-    variant = "intl";
-    options = ["terminate:ctrl_alt_bksp" "ctrl:nocaps"];
-  };
-
-  # Various options that are specific for this machine/user.
+# Various options that are specific for this machine/user.
   #xsession.importedVariables = [
   #    "DBUS_SESSION_BUS_ADDRESS"
   #    "DISPLAY"

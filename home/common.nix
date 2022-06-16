@@ -15,8 +15,17 @@
     ./k8s.nix
     ./xmonad-environment-packages.nix
     ./xmonad-settings.nix
+    ./shell.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
 
+  home = {
+    keyboard = {
+      layout = "us";
+      variant = "intl";
+      options = ["terminate:ctrl_alt_bksp" "ctrl:nocaps"];
+    };
+    sessionPath = ["$HOME/.local/bin:$PATH" "$HOME/.cargo/bin:$PATH"];
+  };
 }
