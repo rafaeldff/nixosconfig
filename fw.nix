@@ -29,6 +29,7 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.bluetooth.enable = true;
 
   #hardware.pulseaudio = {
   #  enable = true;
