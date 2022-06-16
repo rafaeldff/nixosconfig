@@ -58,7 +58,10 @@ fi
 [[ ! -e ./.gitignore-default ]] &&  ln -s ~/homedir/.gitignore-default ~/.gitignore-default
 [[ ! -e ./.gitconfig ]] &&  ln -s ~/homedir/.gitconfig ~/.gitconfig
 
-[[ ! -e $HOME/.datomic/dev-local.edn ]] && ln -s ~/homedir/dev-local.edn ~/.datomic/dev-local.edn
+if [[ ! -e $HOME/.datomic/dev-local.edn ]]; then
+  mkdir -p ~/.datomic
+  ln -s ~/homedir/dev-local.edn ~/.datomic/dev-local.edn
+fi
 
 
 
