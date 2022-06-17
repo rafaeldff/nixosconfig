@@ -57,6 +57,7 @@ fi
 
 [[ ! -e ./.gitignore-default ]] &&  ln -s ~/homedir/.gitignore-default ~/.gitignore-default
 [[ ! -e ./.gitconfig ]] &&  ln -s ~/homedir/.gitconfig ~/.gitconfig
+[[ ! -e ./.ackrc ]] &&  ln -s ~/homedir/.ackrc ~/.ackrc
 
 if [[ ! -e $HOME/.datomic/dev-local.edn ]]; then
   mkdir -p ~/.datomic
