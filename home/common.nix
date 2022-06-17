@@ -26,6 +26,6 @@
       variant = "intl";
       options = ["terminate:ctrl_alt_bksp" "ctrl:nocaps"];
     };
-    sessionPath = ["$HOME/.local/bin:$PATH" "$HOME/.cargo/bin:$PATH"];
+    sessionPath = ["$HOME/.local/bin:$PATH" "$HOME/.cargo/bin:$PATH" "$HOME/bin"];
   };
 }
