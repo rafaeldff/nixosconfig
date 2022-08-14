@@ -15,4 +15,5 @@
 "gradle/"
 "gradlew"
 "gradlew.bat"
+".clerk/"
 ]
