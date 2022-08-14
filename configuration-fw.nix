@@ -53,6 +53,8 @@ in
       ./appearance.nix
       ./shell.nix
       ./security.nix
+      
+      ./personal.nix
      
       # host/user specific settings:
       ./custom-fw.nix
