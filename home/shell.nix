@@ -7,6 +7,7 @@
     historyFileSize = 1000000;
     historySize = 1000000;
     sessionVariables = {
+      EDITOR = "vim";
       HISTTIMEFORMAT = "%F %T ";
       XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS";
       # note: shopt histappend is on by default.
