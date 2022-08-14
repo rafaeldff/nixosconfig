@@ -10,6 +10,7 @@
   };
 
   home-manager.users.r2 = import ./home/fw.nix;
+  home-manager.users.rafael = import ./home/fw.nix;
 
   services.xserver = {
     enable = true;
