@@ -17,4 +17,5 @@
 "gradlew.bat"
 ".clerk/"
 ".clerk"
+"nohup.out"
 ]
