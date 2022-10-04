@@ -60,8 +60,8 @@ in
       ./custom-fw.nix
 
       # locale stuff
-      #./de.nix
-      ./brasil.nix
+      ./de.nix
+      #./brasil.nix
 
       # system options (systemd, journald, etc)
       ./system.nix
