@@ -17,6 +17,7 @@
       grep = "grep --color=auto";
       fgrep = "fgrep --color=auto";
       egrep = "egrep --color=auto";
+      today = "date +'%Y%m%d'";
     };
     initExtra = ''
       export GIT_PS1_SHOWDIRTYSTATE=1
