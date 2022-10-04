@@ -6,12 +6,14 @@
   #networking.extraHosts ="127.0.0.1 fw-rafaelnix";
   #networking.networkmanager.insertNameservers = ["8.8.8.8" "8.8.4.4"];
 
+  users.groups.onepassword-cli = {};
+
   ## Users
   # users.mutableUsers = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rafael = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "docker" "onepassword-cli" ]; # Enable ‘sudo’ for the user.
     createHome = true;
     uid = 1000;
   };

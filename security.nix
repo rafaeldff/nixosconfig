@@ -7,5 +7,7 @@
     with pkgs; [
     ecryptfs
     ecryptfs-helper
+    _1password
+    _1password-gui
   ]; 
 }

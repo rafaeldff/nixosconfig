@@ -10,6 +10,7 @@
       EDITOR = "vim";
       HISTTIMEFORMAT = "%F %T ";
       XDG_DATA_DIRS = "$HOME/.nix-profile/share:$XDG_DATA_DIRS";
+      NIXPKGS_ALLOW_UNFREE = 1;
       # note: shopt histappend is on by default.
     };
     shellAliases = {
