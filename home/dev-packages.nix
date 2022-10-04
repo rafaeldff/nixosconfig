@@ -49,6 +49,7 @@
 	enable = true;
 	skipSmudge = true;
       };
+      difftastic.enable = true;
       extraConfig = {
         push = { default = "upstream"; };
         "url \"git@github.com:\"" = { insteadOf = "https://github.com/"; };
