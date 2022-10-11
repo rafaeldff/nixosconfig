@@ -7,7 +7,7 @@
     alacritty
     haskellPackages.xmobar
     dmenu
-    rxvt_unicode
+    xterm
     xlockmore
     ];
 }
