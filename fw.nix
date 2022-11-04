@@ -71,5 +71,6 @@
 
   # fingerprint sensor
   services.fprintd.enable = true;
+  services.udisks2.enable = true;
 }
 
