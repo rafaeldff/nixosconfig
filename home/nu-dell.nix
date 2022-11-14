@@ -24,6 +24,9 @@
     ./nu.nix
   ];
 
+  programs.bash.sessionVariables = {
+    SSH_AUTH_SOCK = "";
+  };
 # Various options that are specific for this machine/user.
   #xsession.importedVariables = [
   #    "DBUS_SESSION_BUS_ADDRESS"
