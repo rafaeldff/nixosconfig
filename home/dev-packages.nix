@@ -73,7 +73,7 @@
         report = "!git fetch origin && git --no-pager log  --pretty=format:\"%<(22)%an %<(11)%ar | %s%C(yellow)%d%Creset\"  --date=short  --since \"2 weeks ago\" --all --color=always | grep -v 'lint fix'";
         syncmain = "!git checkout main && git pull --ff-only origin main && git checkout - && git merge main";
         p = "pull --ff-only  --prune";
-        recent = "branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\"";
+        recent = "branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(align:width=32)%(refname:short)%(end) %(authorname)\"";
       };
       includes = [
         {
