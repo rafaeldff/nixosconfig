@@ -75,6 +75,12 @@
         p = "pull --ff-only  --prune";
         recent = "branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\"";
       };
+      includes = [
+        {
+          path = "~/.nugitconfig";
+          condition = "gitdir:~/dev/nu/";
+        }
+      ];
     };
 
   }

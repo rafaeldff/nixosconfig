@@ -26,10 +26,10 @@
   ];
 
   #services.pcscd.enable = true; #XXX
-  #programs.gnupg.agent = { #XXX
-  #  enable = true;
-  #  pinentryFlavor = "curses";
-  #};
+  services.gpg-agent = { #XXX
+   enable = true;
+   pinentryFlavor = "curses";
+  };
   
   #hardware.u2f.enable = true; #XXX
 
