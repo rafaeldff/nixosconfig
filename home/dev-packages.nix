@@ -8,7 +8,7 @@
     with pkgs; [
     
     # dev
-    python2
+    #python
     # gitFull conflicts with git #XXX 
     openjdk11
     maven
