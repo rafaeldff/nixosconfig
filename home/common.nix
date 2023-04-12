@@ -19,6 +19,7 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+  manual.manpages.enable = false;
 
   home = {
     keyboard = {

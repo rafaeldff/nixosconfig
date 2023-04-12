@@ -6,7 +6,7 @@ in {
   environment.systemPackages =
   with pkgs; [
     #yubikey
-    yubioath-desktop
+    yubioath-flutter
     yubikey-manager
     gnupg # this is gpg >= 2
     pinentry-curses
