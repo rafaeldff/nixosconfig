@@ -32,6 +32,9 @@ in
 
       # hardware specific tuning (change for different hardware)
       ./fw.nix
+      ./printing.nix
+      <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan5.nix>
+
 
       # How to configure networking (change if you want gnome to take care of it) 
       ./netmanager.nix
