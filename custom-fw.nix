@@ -13,7 +13,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rafael = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "onepassword-cli" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "docker" "onepassword-cli" "vboxusers" ]; # Enable ‘sudo’ for the user.
     createHome = true;
     uid = 1000;
   };
