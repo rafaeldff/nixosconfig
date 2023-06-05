@@ -12,6 +12,8 @@
   hardware.sane.extraBackends = [ pkgs.sane-airscan ];
   users.users.rafael.extraGroups = [ "scanner" "lp" ];
 
+  environment.systemPackages = [ pkgs.xsane ];
+
   #hardware.sane.brscan5.netDevices = {
     #home = {
       #model = "MFC-L2710DW";
