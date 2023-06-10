@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   # Use the systemd-boot EFI boot loader.
@@ -68,5 +68,36 @@
   # fingerprint sensor
   services.fprintd.enable = true;
   services.udisks2.enable = true;
+
+  boot.kernelParams = [ "mem_sleep_default=deep" ];
+
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+    cpuFreqGovernor = "ondemand";
+  };
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_BOOST_ON_BAT = 0;
+      CPU_SCALING_GOVERNOR_ON_AC="performance";
+      CPU_SCALING_GOVERNOR_ON_BATTERY = "powersave";
+      START_CHARGE_THRESH_BAT0 = 90;
+      STOP_CHARGE_THRESH_BAT0 = 97;
+      RUNTIME_PM_ON_BAT = "auto";
+    };
+  };
+
+  services.logind = {
+    lidSwitch = "suspend-then-hibernate";
+    extraConfig = ''
+      HandlePowerKey=suspend-then-hibernate
+      IdleAction=suspend-then-hibernate
+      IdleActionSec=2m
+    '';
+  };
+  systemd.sleep.extraConfig = "HibernateDelaySec=1h";
+
 }
 
