@@ -17,6 +17,7 @@
     bemenu # wayland clone of dmenu
     mako # notification system developed by swaywm maintainer
     wdisplays # tool to configure displays
+    kanshi # set up display profiles
   ];
 }
 
