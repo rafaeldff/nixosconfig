@@ -73,5 +73,11 @@ in
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    extraSessionCommands = ''
+      source /etc/profile
+      test -f $HOME/.profile && source $HOME/.profile
+      export MOZ_ENABLE_WAYLAND=1
+      systemctl --user import-environment
+    '';
   };
 }
