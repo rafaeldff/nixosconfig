@@ -66,6 +66,9 @@ fi
 
 
 
+[[ ! -e ./.config/sway ]] &&  mkdir -p ~/.config/sway
+[[ ! -e ./.config/sway/config ]] &&  ln -s ~/homedir/config/sway/config ./.config/sway/config
+
 if grep -Eqi 'Name="?Ubuntu"?' /etc/os-release
 then
   echo "Config git for work laptop"

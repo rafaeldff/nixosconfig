@@ -33,6 +33,7 @@ in
       # hardware specific tuning (change for different hardware)
       ./fw.nix
       ./printing.nix
+      ./audio.nix
       <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan5.nix>
 
 
@@ -45,6 +46,8 @@ in
       # Lots of packages!
       ./base-packages.nix
       ./xmonad-environment-packages.nix
+      ./sway-environment-packages.nix
+      ./gdm.nix
       ./utils-packages.nix
       ./applications-packages.nix
       ./dev-packages.nix
@@ -52,7 +55,7 @@ in
       ./k8s.nix
 
       # XMonad/X settings
-      ./xmonad-settings.nix 
+      ./sway-settings.nix
       ./appearance.nix
       ./shell.nix
       ./security.nix
