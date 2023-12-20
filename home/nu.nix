@@ -48,6 +48,7 @@
       # note: shopt histappend is on by default.
     };
     shellAliases = {
+      vpn = "sudo openfortivpn vpn.nubank.com.br:10443 --user-cert $NU_HOME/.nu/certificates/ist/prod/network_cert.pem --user-key $NU_HOME/.nu/certificates/ist/prod/network_key.pem --trusted-cert c890bcbea7547a3ac57c11b68a4830a077e46c8696134c328b4180c4d4014b56 ";
     };
     bashrcExtra = ''
       function docker-compose() {

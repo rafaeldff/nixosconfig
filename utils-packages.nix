@@ -20,6 +20,9 @@
     dutree
     pv
 
+    #sound
+    pavucontrol
+
     # networking
     mtr
     ldns
