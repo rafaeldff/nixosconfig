@@ -65,6 +65,8 @@
         "init" = {
           defaultBranch = "main";
         };
+        rerere.enabled = true;
+        branch.sort = "-committerdate";
       };
       ignores = import ./git-ignore.nix;
       attributes = import ./git-attributes.nix;
@@ -74,6 +76,8 @@
         syncmain = "!git checkout main && git pull --ff-only origin main && git checkout - && git merge main";
         p = "pull --ff-only  --prune";
         recent = "branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(align:width=32)%(refname:short)%(end) %(authorname)\"";
+        bl = "blame -w -C -C -C";
+        forcepush = "push --force-with-lease";
       };
       includes = [
         {
