@@ -10,7 +10,6 @@
     evince
     vlc
     libreoffice
-    atom
     ];
 
 }
