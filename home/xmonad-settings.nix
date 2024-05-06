@@ -10,5 +10,8 @@
 
     #xkbOptions = "terminate:ctrl_alt_bksp, ctrl:nocaps";
   };
+
+  services.dunst.enable = true;
+
 }
 
