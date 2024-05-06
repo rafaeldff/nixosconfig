@@ -28,7 +28,8 @@
   #services.pcscd.enable = true; #XXX
   services.gpg-agent = { #XXX
    enable = true;
-   pinentryFlavor = "curses";
+   #pinentryFlavor = "curses";
+   pinentryPackage = pkgs.pinentry-curses;
   };
   
   #hardware.u2f.enable = true; #XXX
