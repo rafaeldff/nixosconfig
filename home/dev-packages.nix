@@ -14,7 +14,7 @@
     maven
     visualvm
     jetbrains.idea-ultimate
-    awscli
+    awscli2
     github-cli
 
     (clojure.override {jdk = pkgs.jdk11;})
