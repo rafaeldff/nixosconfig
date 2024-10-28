@@ -10,14 +10,19 @@
     # dev
     #python2
     # gitFull conflicts with git #XXX 
-    openjdk11
+    openjdk21
     maven
     visualvm
     jetbrains.idea-ultimate
     awscli2
     github-cli
 
-    (clojure.override {jdk = pkgs.jdk11;})
+    (clojure.override {
+      jdk = pkgs.jdk21.override {
+        enableJavaFX = true; 
+        openjfx = openjfx21.override { withWebKit = true; };
+      };
+    })
     leiningen
 
     #clj-kondo
