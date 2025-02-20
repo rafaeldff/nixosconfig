@@ -14,44 +14,44 @@
 
   # Extracted from nixos/modules/services/x11/xserver.nix
   systemd.defaultUnit = "graphical.target";
-  systemd.services.display-manager =
-    let
-      cfg = config.services.xserver.displayManager;
-    in
-    {
-      description = "Display Manager";
-
-      after = [ "acpid.service" "systemd-logind.service" ];
-
-      restartIfChanged = false;
-
-      environment =
-        lib.optionalAttrs
-          config.hardware.opengl.setLdLibraryPath {
-          LD_LIBRARY_PATH = pkgs.addOpenGLRunpath.driverLink;
-        } // cfg.job.environment;
-
-      preStart =
-        ''
-          ${cfg.job.preStart}
-
-          rm -f /tmp/.X0-lock
-        '';
-
-      script = "${cfg.job.execCmd}";
-
-      serviceConfig = {
-        Restart = "always";
-        RestartSec = "200ms";
-        SyslogIdentifier = "display-manager";
-        # Stop restarting if the display manager stops (crashes) 2 times
-        # in one minute. Starting X typically takes 3-4s.
-        StartLimitInterval = "30s";
-        StartLimitBurst = "3";
-        # trace: warning: Service 'display-manager.service' uses the attribute 'StartLimitInterval' in the Service section, which is deprecated. See https://github.com/NixOS/nixpkgs/issues/45786.
-
-      };
-    };
+  #  systemd.services.display-manager =
+  #    let
+  #      cfg = config.services.xserver.displayManager;
+  #    in
+  #    {
+  #      description = "Display Manager";
+  #
+  #      after = [ "acpid.service" "systemd-logind.service" ];
+  #
+  #      restartIfChanged = false;
+  #
+  #      environment =
+  #        lib.optionalAttrs
+  #          config.hardware.opengl.setLdLibraryPath {
+  #          LD_LIBRARY_PATH = pkgs.addOpenGLRunpath.driverLink;
+  #        } // cfg.job.environment;
+  #
+  #      preStart =
+  #        ''
+  #          ${cfg.job.preStart}
+  #
+  #          rm -f /tmp/.X0-lock
+  #        '';
+  #
+  #      script = "${cfg.job.execCmd}";
+  #
+  #      serviceConfig = {
+  #        Restart = "always";
+  #        RestartSec = "200ms";
+  #        SyslogIdentifier = "display-manager";
+  #        # Stop restarting if the display manager stops (crashes) 2 times
+  #        # in one minute. Starting X typically takes 3-4s.
+  #        StartLimitInterval = "30s";
+  #        StartLimitBurst = "3";
+  #        # trace: warning: Service 'display-manager.service' uses the attribute 'StartLimitInterval' in the Service section, which is deprecated. See https://github.com/NixOS/nixpkgs/issues/45786.
+  #
+  #      };
+  #    };
 
   # make new tabs/shells use the previous directory
   #environment.interactiveShellInit = ''

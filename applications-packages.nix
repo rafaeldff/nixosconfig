@@ -17,11 +17,11 @@ in
           #sha256 = "1971jc0431pl8yixpl37ryl2l0pqdf0xjvkg59nqdwj3vbdx5606";
         #};
     #}))
-    spotify
+    #spotify
     evince
     vlc
     libreoffice
-    atom
+    #atom
     ];
 
   #nixpkgs.config = {

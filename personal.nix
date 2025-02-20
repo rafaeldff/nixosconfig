@@ -16,7 +16,8 @@ in {
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "curses";
+    #pinentryFlavor = "curses";
+    pinentryPackage = pkgs.pinentry-curses;
   };
   
   #hardware.u2f.enable = true;
