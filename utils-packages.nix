@@ -19,6 +19,7 @@
     bat
     dutree
     pv
+    acpi
 
     #sound
     pavucontrol
