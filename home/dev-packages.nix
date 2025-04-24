@@ -10,7 +10,7 @@
     # dev
     #python2
     # gitFull conflicts with git #XXX 
-    openjdk21
+    openjdk23
     maven
     visualvm
     jetbrains.idea-ultimate
@@ -20,7 +20,7 @@
     (clojure.override {
       jdk = pkgs.jdk21.override {
         enableJavaFX = true; 
-        openjfx = openjfx21.override { withWebKit = true; };
+        openjfx_jdk = openjfx23.override { withWebKit = true; };
       };
     })
     leiningen
