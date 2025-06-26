@@ -99,5 +99,6 @@
   };
   systemd.sleep.extraConfig = "HibernateDelaySec=1h";
 
+  services.fwupd.enable = true; 
 }
 
