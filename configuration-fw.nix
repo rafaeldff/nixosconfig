@@ -64,6 +64,7 @@ in
      
       # host/user specific settings:
       ./custom-fw.nix
+      ./fingerprint.nix
 
       # locale stuff
       ./de.nix
