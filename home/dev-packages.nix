@@ -17,12 +17,22 @@
     awscli2
     github-cli
 
+    #(clojure.override {
+      #jdk = pkgs.jdk21.override {
+        #enableJavaFX = true; 
+        #openjfx_jdk = openjfx23.override { withWebKit = true; };
+      #};
+    #})
     (clojure.override {
-      jdk = pkgs.jdk21.override {
-        enableJavaFX = true; 
-        openjfx_jdk = openjfx23.override { withWebKit = true; };
+      jdk = pkgs.jdk23.override {
+	enableJavaFX = true;
+	openjfx_jdk = pkgs.openjfx23.override {
+	  withWebKit = false;
+	};
       };
     })
+
+
     leiningen
 
     #clj-kondo
