@@ -45,6 +45,13 @@
     # web ui
     ncurses.dev
     confluent-platform
+
+
+    # node stuff (e.g. for gemini cli)
+    nodejs_20  
+    #nodePackages.npm
+    #nodePackages.npx
+
     ];
 
     #nixpkgs.config.packageOverrides = pkgs: rec {
