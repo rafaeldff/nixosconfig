@@ -70,18 +70,42 @@ list-secrets() {
 
 # make-env function - create .env file for all secrets of a specific service
 make-env() {
-    local target_service="$1"
-    local env_file=".env"
+    local target_service=""
+    local output_file=".env"
+    local use_rc_format=false
+    
+    # Parse arguments
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            --rc)
+                use_rc_format=true
+                output_file=".envrc"
+                shift
+                ;;
+            *)
+                target_service="$1"
+                shift
+                ;;
+        esac
+    done
     
     if [ -z "$target_service" ]; then
-        echo "Usage: make-env <service-name>" >&2
+        echo "Usage: make-env [--rc] <service-name>" >&2
         echo "Example: make-env gemini" >&2
+        echo "Example: make-env --rc gemini  # creates .envrc for direnv" >&2
         return 1
     fi
     
-    echo "# Secrets for service: $target_service" > "$env_file"
-    echo "# Generated on $(date)" >> "$env_file"
-    echo "" >> "$env_file"
+    if [ "$use_rc_format" = true ]; then
+        echo "#!/usr/bin/env bash" > "$output_file"
+        echo "# direnv envrc for service: $target_service" >> "$output_file"
+        echo "# Generated on $(date)" >> "$output_file"
+        echo "" >> "$output_file"
+    else
+        echo "# Secrets for service: $target_service" > "$output_file"
+        echo "# Generated on $(date)" >> "$output_file"
+        echo "" >> "$output_file"
+    fi
     
     local found_secrets=false
     local temp_keys_file=$(mktemp)
@@ -95,23 +119,34 @@ make-env() {
             # Convert key to uppercase and replace dashes with underscores  
             var_name=$(echo "$key" | tr '[:lower:]' '[:upper:]' | tr '-' '_')
             
-            # Get the actual secret value
-            secret_value=$(get-secret "$target_service" "$key")
-            if [ -n "$secret_value" ]; then
-                echo "$var_name=$secret_value" >> "$env_file"
+            if [ "$use_rc_format" = true ]; then
+                # For .envrc, use direct secret-tool call (direnv doesn't have our functions)
+                echo "export $var_name=\$(secret-tool lookup service $target_service key $key 2>/dev/null)" >> "$output_file"
                 found_secrets=true
+            else
+                # For .env, get the actual secret value
+                secret_value=$(get-secret "$target_service" "$key")
+                if [ -n "$secret_value" ]; then
+                    echo "$var_name=$secret_value" >> "$output_file"
+                    found_secrets=true
+                fi
             fi
         fi
     done < "$temp_keys_file"
     
     if [ "$found_secrets" = "true" ]; then
-        echo "✓ .env file created for service '$target_service'"
+        if [ "$use_rc_format" = true ]; then
+            echo "✓ .envrc file created for service '$target_service'"
+            echo "  Run 'direnv allow' to enable automatic loading"
+        else
+            echo "✓ .env file created for service '$target_service'"
+        fi
         # Show found keys by reading the temp file
         keys=$(grep 'attribute.key = ' "$temp_keys_file" | sed 's/.*attribute.key = //' | paste -sd, -)
         echo "  Found secrets for keys: $keys"
     else
         echo "✗ No secrets found for service '$target_service'"
-        rm -f "$env_file"
+        rm -f "$output_file"
     fi
     
     rm -f "$temp_keys_file"
