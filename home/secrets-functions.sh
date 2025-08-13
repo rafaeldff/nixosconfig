@@ -14,32 +14,6 @@ get-secret() {
     secret-tool lookup service "$service" key "$key" 2>/dev/null
 }
 
-# make-env function - create .env file that shells out to get secrets
-make-env() {
-    local env_file=".env"
-    
-    # Create .env file that dynamically retrieves secrets
-    cat > "$env_file" << 'EOF'
-# Dynamic secrets from GNOME Keyring - no plaintext secrets stored here
-API_TOKEN=$(get-secret myapp api 2>/dev/null || echo "")
-
-# Add more secrets as needed
-# DB_PASSWORD=$(get-secret database password 2>/dev/null || echo "")
-# OPENAI_API_KEY=$(get-secret openai api 2>/dev/null || echo "")
-EOF
-    
-    echo "✓ Dynamic .env file created"
-    return 0
-}
-
-# load-secrets function - create dynamic .env file
-load-secrets() {
-    echo "Creating dynamic .env file..."
-    
-    make-env
-    echo "  Use 'source .env' to evaluate and load secrets"
-    echo "  Secrets are retrieved from keyring each time .env is sourced"
-}
 
 # store-secret function - helper to store secrets
 store-secret() {
@@ -94,14 +68,14 @@ list-secrets() {
     done
 }
 
-# make-service-env function - create .env file for all secrets of a specific service
-make-service-env() {
+# make-env function - create .env file for all secrets of a specific service
+make-env() {
     local target_service="$1"
     local env_file=".env"
     
     if [ -z "$target_service" ]; then
-        echo "Usage: make-service-env <service-name>" >&2
-        echo "Example: make-service-env myapp" >&2
+        echo "Usage: make-env <service-name>" >&2
+        echo "Example: make-env gemini" >&2
         return 1
     fi
     
