@@ -1,107 +1,103 @@
-# Keyring-Based Secrets Management Setup Plan
+# GNOME Keyring Secrets Management Setup Plan
 
 ## Overview
-Set up a secure keyring for storing secrets like API keys, with fingerprint authentication for access. Focus on security and trustworthiness for Sway desktop environment.
+Leverage existing GNOME Keyring setup for storing secrets like API keys, using standard Secret Service API for maximum compatibility.
 
-## Keyring Choice: KeePassXC
-**Selected for**: Strong security, audit history, no desktop environment dependencies, supports biometric unlock, widely trusted by security community.
-
-Alternative considered: `pass` with `pass-otp` (GPG-based, very secure but less convenient for biometric unlock).
+## Current Status
+✅ GNOME Keyring daemon is already running  
+✅ Home-manager service enabled in `home/utils-packages.nix`  
+❌ Missing `secret-tool` command (`libsecret` package needed)
 
 ## Setup Steps
 
-### 1. Install Required Packages
-Add to appropriate package files:
+### 1. Add Missing Package
+Add `libsecret` to `home/utils-packages.nix`:
 ```nix
-# In applications-packages.nix or similar
-keepassxc
-libfprint  # For fingerprint reader support
-fprintd    # Already enabled in your config
+# In home/utils-packages.nix, add to packages list:
+libsecret  # Provides secret-tool for Secret Service API access
 ```
 
-### 2. Configure Fingerprint Authentication
-Ensure fingerprint enrollment:
+### 2. Test Keyring Access
+After rebuild, verify functionality:
 ```bash
-# Enroll fingerprint if not already done
-sudo fprintd-enroll rafael
+# Store a test secret
+secret-tool store --label="Test Secret" service test key sample
+
+# Retrieve it
+secret-tool lookup service test key sample
 ```
 
-### 3. Create KeePassXC Database
-- Create master database with strong password
-- Enable fingerprint unlock in KeePassXC settings
-- KeePassXC can use system fingerprint reader for database unlock
-
-### 4. Store Sample Secret
-Create entry for GitHub API token:
-- Title: "GitHub API Token"
-- Username: "rafael" 
-- Password: "ghp_xxxxxxxxxxxx"
-- Notes: "Personal access token for GitHub API"
-
-### 5. Command Line Access
-Install KeePassXC CLI tools:
-```nix
-# Add to package list
-keepassxc-cli
+### 3. Store Sample API Token
+```bash
+# Store sample API token
+secret-tool store --label="Sample API Token" service myapp key api
+# Enter token when prompted: sk_xxxxxxxxxxxx
 ```
 
-### 6. Create Helper Scripts
-Create utility scripts in home-manager:
+### 4. Create Standards-Based Helper Scripts
+Create `home/shell-secrets.nix` for helper functions:
 
 ```bash
-# ~/.local/bin/get-secret
-#!/bin/bash
-# Usage: get-secret "GitHub API Token"
-keepassxc-cli show ~/secrets.kdbx "$1" -a password
-```
+# get-secret function
+get-secret() {
+    local service="$1"
+    local key="$2"
+    secret-tool lookup service "$service" key "$key"
+}
 
-```bash
-# ~/.local/bin/make-env
-#!/bin/bash
-# Create .env file from keyring
-echo "GITHUB_TOKEN=$(get-secret 'GitHub API Token')" > .env
-echo "Secrets loaded to .env"
-```
+# make-env function  
+make-env() {
+    echo "API_TOKEN=$(get-secret myapp api)" > .env
+    echo "✓ Secrets loaded to .env"
+}
 
-### 7. Integration with Shell
-Add to shell configuration:
-```bash
-# Function to load project secrets
+# load-secrets function
 load-secrets() {
-    if make-env; then
-        echo "✓ Secrets loaded to .env (requires database unlock)"
+    if make-env 2>/dev/null; then
+        echo "✓ Secrets loaded successfully"
     else
-        echo "✗ Failed to load secrets"
+        echo "✗ Failed to load secrets (keyring locked?)"
+        return 1
     fi
 }
 ```
+
+### 5. Configure Fingerprint Unlock
+GNOME Keyring automatically integrates with system authentication:
+- Uses existing fingerprint setup (fprintd already configured)
+- First secret access will prompt for authentication
+- Keyring unlocks for entire session after successful auth
+
+### 6. Update Home Manager Configuration
+Import the new shell secrets module in appropriate home-manager file.
 
 ## File Structure After Setup
 ```
 nixosconfig/
 ├── home/
-│   ├── keepass-config.nix    # KeePassXC home-manager config
-│   └── shell-secrets.nix     # Shell helper functions
-└── ~/secrets.kdbx            # KeePassXC database (not in git)
+│   ├── utils-packages.nix     # Add libsecret here
+│   ├── shell-secrets.nix      # Helper functions (new)
+│   └── *.nix                  # Import shell-secrets in appropriate file
 ```
 
 ## Security Benefits
-- Database encrypted with industry-standard algorithms (AES-256)
-- Master password + fingerprint two-factor unlock
-- No plaintext secrets on disk
-- Audit trail of secret access
-- Cross-platform, well-audited codebase
-- Local-only storage (no cloud sync required)
+- Uses freedesktop.org Secret Service API standard
+- Compatible with all major keyrings (GNOME, KWallet, KeePassXC)
+- Integrates with system authentication (PAM/fingerprint)
+- Encrypted storage in system keyring
+- Session-based unlocking (unlock once per login)
+- No additional software dependencies
 
 ## Usage Pattern
 1. Open project directory
-2. Run `load-secrets` (triggers fingerprint prompt)
-3. KeePassXC unlocks with fingerprint
-4. Secrets written to `.env` file
-5. Database locks automatically after timeout
+2. Run `load-secrets` (may prompt for fingerprint on first access)
+3. Secrets written to `.env` file
+4. Keyring remains unlocked for session
 
-## Alternative: CLI-Only with `pass`
-If preferring command-line only:
-- Use `pass` (password store) with GPG keys
-- Store GPG key in TPM with fingerprint unlock
-- More complex but fully CLI-driven
+## Advantages Over KeePassXC Approach
+- Already installed and configured
+- Uses standard Linux APIs
+- No additional GUI applications
+- Better integration with system authentication
+- Lighter resource usage
+- More universal compatibility

@@ -16,6 +16,7 @@
     ./xmonad-environment-packages.nix
     ./xmonad-settings.nix
     ./shell.nix
+    ./shell-secrets.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

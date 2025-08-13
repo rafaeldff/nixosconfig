@@ -26,6 +26,7 @@
 
     # sec
     _1password
+    libsecret  # Provides secret-tool for Secret Service API access
     ];
 
   #programs.ssh.startAgent = true; #XXX
