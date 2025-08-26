@@ -57,5 +57,23 @@
         fi
       fi
     '';
+
+
+    bashrcExtra = ''
+      shopt -s globstar
+    '';
+  };
+
+  programs.readline = {
+    enable = true;
+    bindings = {
+      "\\t" = "menu-complete";
+      "\\e[Z" = "menu-complete-backward"; # shift-tab
+    };
+    variables = {
+      "show-all-if-ambiguous" = "on";
+      "menu-complete-display-prefix" = "on";
+
+    };
   };
 }
