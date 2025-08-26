@@ -20,6 +20,8 @@
       egrep = "egrep --color=auto";
       today = "date +'%Y%m%d'";
       okular = "QT_QPA_PLATFORM=xcb okular";
+      gemini-cli = "npx -y https://github.com/google-gemini/gemini-cli";
+      claude-code = "npx -y  @anthropic-ai/claude-code";
     };
     initExtra = ''
       export GIT_PS1_SHOWDIRTYSTATE=1
