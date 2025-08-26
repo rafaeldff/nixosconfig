@@ -28,18 +28,28 @@
   # Static fallback IPP queue for Brother MFC‑L2710DW
   # Using the new hardware.printers.* options (25.05+)
   # ────────────────────────────────────────────────
-  hardware.printers = {
-    ensurePrinters = [
-      {
-        name        = "BrotherManual";
-        description = "Brother MFC‑L2710DW (manual IPP)";
-        deviceUri   = "ipp://BRW900F0CD6AC59.local/ipp/print";
-        model       = "everywhere"; # IPP Everywhere driverless
-        # ppdOptions  = { sides = "two-sided-long-edge"; };
-      }
-    ];
-    ensureDefaultPrinter = "BrotherManual";
+  # Make ensure-printers start after network+Avahi+CUPS, retry if early
+  systemd.services.ensure-printers = {
+    after  = [ "network-online.target" "avahi-daemon.service" "cups.service" ];
+    wants  = [ "network-online.target" "avahi-daemon.service" "cups.service" ];
+    serviceConfig = {
+      Restart = "on-failure";
+      RestartSec = "10s";
+      TimeoutStartSec = "60s";
+      ExecStartPre = "${pkgs.writeShellScript ''wait-mdns'' ''
+        # Wait (max ~30s) for mDNS resolution of the printer's .local name
+        for i in $(seq 1 15); do
+          if getent hosts BRW900F0CD6AC59.local >/dev/null; then
+            exit 0
+          fi
+          sleep 2
+        done
+        # Don't fail hard; allow the main ExecStart to run and systemd to retry
+        exit 0
+      ''}";
+    };
   };
+
 
   # Avahi for mDNS name resolution (needed for .local hostnames)
   services.avahi.enable       = true;
