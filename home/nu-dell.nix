@@ -21,6 +21,7 @@
 
   imports = [
     ./common.nix
+    ./xmonad-settings.nix
     ./nu.nix
   ];
 

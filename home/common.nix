@@ -14,7 +14,6 @@
     #XXX docker-packages
     ./k8s.nix
     ./xmonad-environment-packages.nix
-    ./xmonad-settings.nix
     ./shell.nix
     ./shell-secrets.nix
   ];

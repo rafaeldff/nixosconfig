@@ -22,5 +22,8 @@
 
     xkbOptions = "terminate:ctrl_alt_bksp, ctrl:nocaps";
   };
+
+  # Enable dunst notification daemon for xmonad
+  services.dunst.enable = true;
 }
 

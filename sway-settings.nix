@@ -88,4 +88,17 @@ in
       Type = "simple"; ExecStart = ''${pkgs.kanshi}/bin/kanshi'';
     };
   };
+
+  # Enable mako notification daemon for sway
+  systemd.user.services.mako = {
+    description = "Mako notification daemon";
+    partOf = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.mako}/bin/mako";
+      Restart = "always";
+    };
+    wantedBy = [ "sway-session.target" ];
+  };
 }
