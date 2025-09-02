@@ -40,10 +40,10 @@ This script:
 ## Supported Workstations
 
 Current workstation configurations:
-- `desktop` - Desktop hardware configuration
-- `mac` - MacBook configuration with EFI boot
-- `fw` - Framework laptop configuration
-- `nu-dell` - Dell laptop (work/Nubank configuration)
+- `fw` - Framework laptop configuration (active, uses sway + home-manager)
+- `nu-dell` - Dell laptop NixOS config (deprecated for NixOS, but home config used standalone)
+- `desktop` - Desktop hardware configuration (very old, ignore)
+- `mac` - MacBook configuration with EFI boot (legacy)
 
 ## Key Configuration Patterns
 
@@ -70,3 +70,25 @@ XMonad is the primary window manager, configured through:
 - `home/xmonad-settings.nix` - User-level XMonad configuration
 
 Sway (Wayland) is also supported with similar modular configuration files.
+
+## Environment-Specific Configurations
+
+### Notification Daemons
+The system uses different notification daemons depending on the window manager:
+
+**Sway environments** (fw configuration):
+- Uses **mako** notification daemon
+- Configured as systemd user service in `sway-settings.nix`
+- Mako package included in `sway-environment-packages.nix`
+- Home-manager does NOT enable dunst for sway environments
+
+**XMonad environments** (nu-dell, desktop configurations):
+- Uses **dunst** notification daemon
+- For NixOS systems: enabled at system level in `xmonad-settings.nix`  
+- For standalone home-manager: enabled in `home/xmonad-settings.nix` (imported by `home/nu-dell.nix`)
+
+**Critical insight**: The `home/common.nix` file should NOT import `xmonad-settings.nix` because it would cause dunst to run in sway environments, conflicting with mako.
+
+### Current Usage Patterns
+- **fw + NixOS + sway**: Active system using NixOS with sway and home-manager
+- **Dell laptop**: Currently runs non-NixOS distro but uses home-manager directly with `home/nu-dell.nix` configuration for xmonad + dunst
