@@ -15,6 +15,7 @@
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     bemenu # wayland clone of dmenu
+    wmenu # wofi clone for dmenu
     mako # notification system developed by swaywm maintainer
     wdisplays # tool to configure displays
     kanshi # set up display profiles
