@@ -60,7 +60,7 @@ list-secrets() {
     
     # secret-tool search outputs metadata to stderr, secret values to stdout
     # We want the key names from the metadata (stderr)
-    secret-tool search --unlock service "$service_name" 2>&1 1>/dev/null | while read -r line; do
+    secret-tool search --all  --unlock service "$service_name" 2>&1 1>/dev/null | while read -r line; do
         if echo "$line" | grep -q "attribute.key = "; then
             key=$(echo "$line" | sed 's/.*attribute.key = //')
             echo "  $key"
@@ -111,7 +111,7 @@ make-env() {
     local temp_keys_file=$(mktemp)
     
     # Search for all secrets with matching service - read metadata from stderr
-    secret-tool search --unlock service "$target_service" 2>"$temp_keys_file" 1>/dev/null
+    secret-tool search  --all --unlock service "$target_service" 2>"$temp_keys_file" 1>/dev/null
     
     while read -r line; do
         if echo "$line" | grep -q "attribute.key = "; then
