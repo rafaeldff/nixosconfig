@@ -73,6 +73,7 @@ make-env() {
     local target_service=""
     local output_file=".env"
     local use_rc_format=false
+    local append_mode=false
     
     # Parse arguments
     while [[ $# -gt 0 ]]; do
@@ -80,6 +81,10 @@ make-env() {
             --rc)
                 use_rc_format=true
                 output_file=".envrc"
+                shift
+                ;;
+            --append|-a)
+                append_mode=true
                 shift
                 ;;
             *)
@@ -90,19 +95,28 @@ make-env() {
     done
     
     if [ -z "$target_service" ]; then
-        echo "Usage: make-env [--rc] <service-name>" >&2
+        echo "Usage: make-env [--rc] [--append|-a] <service-name>" >&2
         echo "Example: make-env gemini" >&2
         echo "Example: make-env --rc gemini  # creates .envrc for direnv" >&2
+        echo "Example: make-env --append myapp  # appends to existing .env" >&2
         return 1
     fi
     
-    if [ "$use_rc_format" = true ]; then
-        echo "#!/usr/bin/env bash" > "$output_file"
-        echo "# direnv envrc for service: $target_service" >> "$output_file"
-        echo "# Generated on $(date)" >> "$output_file"
-        echo "" >> "$output_file"
+    if [ "$append_mode" = false ]; then
+        if [ "$use_rc_format" = true ]; then
+            echo "#!/usr/bin/env bash" > "$output_file"
+            echo "# direnv envrc for service: $target_service" >> "$output_file"
+            echo "# Generated on $(date)" >> "$output_file"
+            echo "" >> "$output_file"
+        else
+            echo "# Secrets for service: $target_service" > "$output_file"
+            echo "# Generated on $(date)" >> "$output_file"
+            echo "" >> "$output_file"
+        fi
     else
-        echo "# Secrets for service: $target_service" > "$output_file"
+        # In append mode, add a separator comment
+        echo "" >> "$output_file"
+        echo "# Appended secrets for service: $target_service" >> "$output_file"
         echo "# Generated on $(date)" >> "$output_file"
         echo "" >> "$output_file"
     fi
@@ -136,17 +150,27 @@ make-env() {
     
     if [ "$found_secrets" = "true" ]; then
         if [ "$use_rc_format" = true ]; then
-            echo "✓ .envrc file created for service '$target_service'"
+            if [ "$append_mode" = true ]; then
+                echo "✓ Secrets appended to .envrc for service '$target_service'"
+            else
+                echo "✓ .envrc file created for service '$target_service'"
+            fi
             echo "  Run 'direnv allow' to enable automatic loading"
         else
-            echo "✓ .env file created for service '$target_service'"
+            if [ "$append_mode" = true ]; then
+                echo "✓ Secrets appended to .env for service '$target_service'"
+            else
+                echo "✓ .env file created for service '$target_service'"
+            fi
         fi
         # Show found keys by reading the temp file
         keys=$(grep 'attribute.key = ' "$temp_keys_file" | sed 's/.*attribute.key = //' | paste -sd, -)
         echo "  Found secrets for keys: $keys"
     else
         echo "✗ No secrets found for service '$target_service'"
-        rm -f "$output_file"
+        if [ "$append_mode" = false ]; then
+            rm -f "$output_file"
+        fi
     fi
     
     rm -f "$temp_keys_file"
