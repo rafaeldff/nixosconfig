@@ -11,6 +11,7 @@
     kdePackages.okular
     vlc
     libreoffice
+    zoom-us
     ];
 
 }
