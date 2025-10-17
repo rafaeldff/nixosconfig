@@ -46,7 +46,7 @@ The shell functions are implemented in `home/secrets-functions.sh` and embedded 
 Retrieves a single secret from the keyring.
 ```bash
 get-secret gemini api-key
-# Returns: AIzaSyABjIEITGTmHJ50dlkvuozwtqLb9o8PFe4
+# Returns: THE-KEY
 ```
 
 #### `store-secret <service> <key> [label]`
@@ -72,7 +72,7 @@ Creates environment files with secrets for a service.
 **Standard .env file** (static values):
 ```bash
 make-env gemini
-# Creates .env with: GEMINI_API_KEY=AIzaSyABjIEITGTmHJ50dlkvuozwtqLb9o8PFe4
+# Creates .env with: GEMINI_API_KEY=the_api_key
 ```
 
 **direnv .envrc file** (dynamic shell commands):
@@ -148,7 +148,7 @@ cd my-project/
 # direnv: export +GEMINI_API_KEY
 
 echo $GEMINI_API_KEY
-# AIzaSyABjIEITGTmHJ50dlkvuozwtqLb9o8PFe4
+# THE-KEY
 ```
 
 ### .envrc Format
