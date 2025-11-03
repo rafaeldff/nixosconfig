@@ -20,4 +20,7 @@
 
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "22.05";
+
+
+  services.hardware.bolt.enable = true;
 }
