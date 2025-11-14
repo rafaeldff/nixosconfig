@@ -3,6 +3,7 @@
 {
   imports = [
     ./common.nix
+    ./suspending.nix
   ];
   home.stateVersion = "22.05";
 

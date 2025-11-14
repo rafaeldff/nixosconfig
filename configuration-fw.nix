@@ -32,6 +32,7 @@ in
 
       # hardware specific tuning (change for different hardware)
       ./fw.nix
+      ./suspending.nix
       ./printing.nix
       ./audio.nix
       <nixpkgs/nixos/modules/services/hardware/sane_extra_backends/brscan5.nix>
