@@ -33,8 +33,8 @@
     ];
   };
 
-  # Install dmenu for power-menu
-  home.packages = [ pkgs.dmenu ];
+  # Install wofi for power-menu (has better positioning options than wmenu)
+  home.packages = [ pkgs.wofi ];
 
   # Power menu script
   home.file.".local/bin/power-menu" = {
@@ -46,7 +46,7 @@
 
       CHOICES="Suspend\nHibernate\nCancel"
 
-      choice=$(printf "$CHOICES" | timeout 15 dmenu -p "Power" 2>/dev/null)
+      choice=$(printf "$CHOICES" | timeout 15 wofi --dmenu --prompt "Power" --location center 2>/dev/null)
 
       # If dmenu was killed by timeout or user hit Esc / empty
       if [ $? -eq 124 ] || [ -z "$choice" ]; then
