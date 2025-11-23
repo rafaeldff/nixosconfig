@@ -41,27 +41,45 @@
     text = ''
       #!/usr/bin/env bash
 
-      # Show a small menu using dmenu.
-      # If no choice is made within 15 seconds, default to "Suspend".
+      # Show a small menu using wofi.
+      # If no choice is made within 15 seconds, default to "Sleep".
+      # If user presses ESC, treat as "Cancel" (do nothing).
 
-      CHOICES="Suspend\nHibernate\nCancel"
+      CHOICES="Sleep\nLock\nShutdown\nRestart\nLog-off\nCancel"
 
       choice=$(printf "$CHOICES" | timeout 15 wofi --dmenu --prompt "Power" --location center 2>/dev/null)
+      exit_code=$?
 
-      # If dmenu was killed by timeout or user hit Esc / empty
-      if [ $? -eq 124 ] || [ -z "$choice" ]; then
-        choice="Suspend"
+      # Distinguish between timeout and user cancellation
+      if [ $exit_code -eq 124 ]; then
+        # Timeout - default to Sleep
+        choice="Sleep"
+      elif [ $exit_code -ne 0 ] || [ -z "$choice" ]; then
+        # User pressed ESC or cancelled - treat as Cancel
+        choice="Cancel"
       fi
 
       case "$choice" in
-        Suspend)
+        Sleep)
           systemctl suspend-then-hibernate
           ;;
-        Hibernate)
-          systemctl hibernate
+        Lock)
+          swaylock -f -c 000000
+          ;;
+        Shutdown)
+          systemctl poweroff
+          ;;
+        Restart)
+          systemctl reboot
+          ;;
+        Log-off)
+          swaymsg exit
+          ;;
+        Cancel)
+          # Do nothing
           ;;
         *)
-          # Cancel or anything else: do nothing
+          # Anything else: do nothing
           ;;
       esac
     '';
