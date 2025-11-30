@@ -6,7 +6,7 @@
     vim_configurable
     chromium #XXX
     # firefox-bin #XXX
-    #spotify
+    spotify
     evince
     kdePackages.okular
     vlc
