@@ -11,11 +11,14 @@
   # hardware-specific config file (e.g. nu-dell.nix)
   networking.useDHCP = lib.mkDefault false;
 
+  # NetworkManager dispatcher script to automatically toggle WiFi when Ethernet is connected/disconnected
+  # View logs with: journalctl -t wifi-wired-toggle
   networking.networkmanager.dispatcherScripts = [
     {
       source = pkgs.writeText "wifi-wired-toggle" ''
         # Allow overriding the toggle behavior
         if [ -f /tmp/disable-wifi-auto-switch ]; then
+          logger -t wifi-wired-toggle "Auto-switch disabled by /tmp/disable-wifi-auto-switch"
           exit 0
         fi
 
@@ -26,9 +29,11 @@
         if [[ "$interface" =~ ^(en|eth) ]]; then
           case "$status" in
             up)
+              logger -t wifi-wired-toggle "Ethernet interface $interface is up, disabling WiFi"
               ${pkgs.networkmanager}/bin/nmcli radio wifi off
               ;;
             down)
+              logger -t wifi-wired-toggle "Ethernet interface $interface is down, enabling WiFi"
               ${pkgs.networkmanager}/bin/nmcli radio wifi on
               ;;
           esac
