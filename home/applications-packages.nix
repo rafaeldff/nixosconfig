@@ -3,7 +3,7 @@
 {
   home.packages =
     with pkgs; [
-    vim_configurable
+    vim-full
     chromium #XXX
     # firefox-bin #XXX
     spotify

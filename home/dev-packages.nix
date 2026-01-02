@@ -1,35 +1,35 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
-
+let
+  # Workaround for OpenJDK 25 + JavaFX build issue
+  # https://github.com/NixOS/nixpkgs/issues/412283#issuecomment-3325887652
+  jdk25WithJFX = pkgs.jdk25.overrideAttrs (previous: {
+    enableJavaFX = true;
+    nativeBuildInputs = previous.nativeBuildInputs ++ [ pkgs.makeWrapper ];
+    postFixup = ''
+      wrapProgram $out/bin/java \
+        --add-flags "--upgrade-module-path ${lib.getLib pkgs.openjfx25}/lib"
+      wrapProgram $out/bin/javac \
+        --add-flags "--upgrade-module-path ${lib.getLib pkgs.openjfx25}/lib"
+    '';
+  });
+in
 {
   home.packages =
-    let
-    in
     with pkgs; [
-    
+
     # dev
     #python2
-    # gitFull conflicts with git #XXX 
-    openjdk23
+    # gitFull conflicts with git #XXX
+    openjdk25
     maven
     visualvm
     jetbrains.idea-ultimate
     awscli2
     github-cli
 
-    #(clojure.override {
-      #jdk = pkgs.jdk21.override {
-        #enableJavaFX = true; 
-        #openjfx_jdk = openjfx23.override { withWebKit = true; };
-      #};
-    #})
     (clojure.override {
-      jdk = pkgs.jdk23.override {
-	enableJavaFX = true;
-	openjfx_jdk = pkgs.openjfx23.override {
-	  withWebKit = false;
-	};
-      };
+      jdk = jdk25WithJFX;
     })
 
 

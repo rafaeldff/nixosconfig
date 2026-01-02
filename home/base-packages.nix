@@ -6,7 +6,7 @@
     with pkgs; [
     wget
     git
-    # vim (conflicts with vim_configurable)
+    # vim (conflicts with vim-full)
   ];
 
 

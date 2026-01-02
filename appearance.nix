@@ -4,10 +4,11 @@
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       corefonts
       inconsolata
-      ubuntu_font_family
+      ubuntu-sans
+      ubuntu-sans-mono
     ];
   };
 }

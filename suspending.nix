@@ -20,10 +20,10 @@
 
     # No idle suspend at logind level (handled by swayidle for screen lock only)
     # Power button ignored (let Sway handle it with power-menu script)
-    extraConfig = ''
-      IdleAction=ignore
-      HandlePowerKey=ignore
-    '';
+    settings.Login = {
+      IdleAction = "ignore";
+      HandlePowerKey = "ignore";
+    };
   };
 
   # Configure suspend-then-hibernate behavior

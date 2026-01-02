@@ -29,10 +29,11 @@
     ldns
 
     # sec
-    _1password
+    _1password-cli
     ];
 
-  programs.ssh.startAgent = true;
+  # SSH agent is provided by gnome-keyring (gcr-ssh-agent)
+  # programs.ssh.startAgent = true;  # Conflicts with gcr-ssh-agent
   services.gnome.gnome-keyring.enable = true;
 }
 

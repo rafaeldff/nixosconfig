@@ -6,7 +6,7 @@ in
 {
   environment.systemPackages =
     with pkgs; [
-    vimHugeX
+    vim-full
     chromium
     firefox-bin
     #(lib.overrideDerivation spotify (attrs: {

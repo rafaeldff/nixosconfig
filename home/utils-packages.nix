@@ -25,7 +25,7 @@
     ldns
 
     # sec
-    _1password
+    _1password-cli
     libsecret  # Provides secret-tool for Secret Service API access
     ];
 
