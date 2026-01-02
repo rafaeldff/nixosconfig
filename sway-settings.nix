@@ -101,4 +101,7 @@ in
     };
     wantedBy = [ "sway-session.target" ];
   };
+
+  # Enable blueman for Bluetooth management
+  services.blueman.enable = true;
 }
