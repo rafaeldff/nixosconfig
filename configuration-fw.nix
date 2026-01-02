@@ -68,8 +68,8 @@ in
       ./fingerprint.nix
 
       # locale stuff
-      ./de.nix
-      #./brasil.nix
+      #./de.nix
+      ./brasil.nix
       #./pt.nix
 
       # system options (systemd, journald, etc)
