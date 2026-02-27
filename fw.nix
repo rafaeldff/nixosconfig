@@ -86,6 +86,10 @@
       START_CHARGE_THRESH_BAT0 = 90;
       STOP_CHARGE_THRESH_BAT0 = 97;
       RUNTIME_PM_ON_BAT = "auto";
+      # Apple Magic Trackpad 2: autosuspend prevents cursor movement after
+      # a few seconds of inactivity (requires a click to wake).
+      USB_AUTOSUSPEND_DISABLE_ON_AC = "05ac:0265";
+      USB_AUTOSUSPEND_DISABLE_ON_BAT = "05ac:0265";
     };
   };
 
