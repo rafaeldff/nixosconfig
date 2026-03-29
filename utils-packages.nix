@@ -28,6 +28,9 @@
     mtr
     ldns
 
+    # hardware debug
+    pciutils
+
     # sec
     _1password-cli
     ];
