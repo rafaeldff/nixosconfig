@@ -93,6 +93,12 @@
     };
   };
 
-  services.fwupd.enable = true; 
+  services.fwupd.enable = true;
+
+  # MT7922 Wi-Fi 6E: enable 6 GHz scanning
+  boot.extraModprobeConfig = ''
+    options cfg80211 ieee80211_regdom=DE
+    options mt7921_common disable_clc=1
+  '';
 }
 
