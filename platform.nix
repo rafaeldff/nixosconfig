@@ -1,9 +1,8 @@
 {config, pkgs, ...}:
 
 {
-  # kernel version (used to be latest for net and audio drivers for fw laptop)
-  # set to 6_18 because 6_19 (latest as of last run) was incompatible with VirtualBox
-  boot.kernelPackages =  pkgs.linuxPackages_6_18;
+  # kernel version — trying 6.19 again (VirtualBox compat issue may be fixed)
+  boot.kernelPackages =  pkgs.linuxPackages_latest;
 
   # The NixOS release to be compatible with for stateful data such as databases.  # system.stateVersion = "15.09";
   
