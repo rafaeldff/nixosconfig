@@ -60,5 +60,6 @@
       #};
     #};
 
-    virtualisation.virtualbox.host.enable = true;
+    # Disabled: VirtualBox modules don't build with kernel 6.19
+    # virtualisation.virtualbox.host.enable = true;
 }
