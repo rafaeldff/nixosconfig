@@ -69,7 +69,10 @@
   services.fprintd.enable = true;
   services.udisks2.enable = true;
 
-  boot.kernelParams = [ "mem_sleep_default=deep" ];
+  # AMD Ryzen Framework only supports s2idle (no S3); rely on suspend-then-hibernate
+  # (see suspending.nix) to limit standby drain. resumeDevice points at the swap
+  # partition so the initrd has a deterministic resume target.
+  boot.resumeDevice = "/dev/disk/by-uuid/0a8e42b2-157f-4bd5-8495-5d536c57ed02";
 
   powerManagement = {
     enable = true;
