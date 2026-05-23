@@ -12,6 +12,7 @@
     vlc
     libreoffice
     zoom-us
+    anki
     ];
 
 }
