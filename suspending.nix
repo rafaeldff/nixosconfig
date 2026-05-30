@@ -14,13 +14,12 @@
 {
   # Lid close -> suspend-then-hibernate (even when docked or on external power)
   services.logind = {
-    lidSwitch = "suspend-then-hibernate";
-    lidSwitchDocked = "suspend-then-hibernate";
-    lidSwitchExternalPower = "suspend-then-hibernate";
-
     # No idle suspend at logind level (handled by swayidle for screen lock only)
     # Power button ignored (let Sway handle it with power-menu script)
     settings.Login = {
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandleLidSwitchDocked = "suspend-then-hibernate";
+      HandleLidSwitchExternalPower = "suspend-then-hibernate";
       IdleAction = "ignore";
       HandlePowerKey = "ignore";
     };

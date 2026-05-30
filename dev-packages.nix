@@ -13,7 +13,7 @@
     openjdk11
     maven
     visualvm
-    jetbrains.idea-ultimate
+    jetbrains.idea
     #(idea.idea-ultimate.overrideAttrs (old: rec {
       #version = "2018.1.4";
       #src = fetchurl {
@@ -30,7 +30,7 @@
 
     #clj-kondo
 
-    linuxPackages.perf
+    perf
 
     # virtualization
     vagrant

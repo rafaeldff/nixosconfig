@@ -7,7 +7,7 @@
   # GDM wayland only
   #------------------------------------------
   # https://github.com/NixOS/nixpkgs/issues/57602#issuecomment-657762138
-  services.xserver.displayManager.gdm = {
+  services.displayManager.gdm = {
     enable = true;
     wayland = true;
   };
