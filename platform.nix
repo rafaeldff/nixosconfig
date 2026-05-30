@@ -9,6 +9,6 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.oraclejdk.accept_license = true;
 
-  # We were running out of space on the /boot partition, so had to limit the number of linked configurations
-  boot.loader.systemd-boot.configurationLimit = 3;  # or 3 if it fits
+  # /boot is 510 MB; each generation is ~22 MB, so 20 fits comfortably (~14% / 67 MB at 3)
+  boot.loader.systemd-boot.configurationLimit = 20;
 }
