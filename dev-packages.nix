@@ -48,7 +48,7 @@
 
 
     # node stuff (e.g. for gemini cli)
-    nodejs_20  
+    nodejs_22
     #nodePackages.npm
     #nodePackages.npx
 

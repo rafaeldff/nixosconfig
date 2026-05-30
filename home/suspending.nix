@@ -25,12 +25,9 @@
     ];
 
     # Lock before any system sleep (lid close, power-menu suspend, etc.)
-    events = [
-      {
-        event = "before-sleep";
-        command = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
-      }
-    ];
+    events = {
+      before-sleep = "${pkgs.swaylock}/bin/swaylock -f -c 000000";
+    };
   };
 
   # Install wofi for power-menu (has better positioning options than wmenu)
