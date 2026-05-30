@@ -73,7 +73,7 @@ in
       #./pt.nix
 
       # system options (systemd, journald, etc)
-      ./system.nix
+      ./journald.nix
 
       # import home-manager
       <home-manager/nixos>

@@ -9,7 +9,6 @@
   # https://github.com/NixOS/nixpkgs/issues/57602#issuecomment-657762138
   services.displayManager.gdm = {
     enable = true;
-    wayland = true;
   };
 
   # Extracted from nixos/modules/services/x11/xserver.nix

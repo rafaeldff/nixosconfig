@@ -46,6 +46,6 @@
       ./brasil.nix
 
       # system options (systemd, journald, etc)
-      ./system.nix
+      ./journald.nix
     ];
 }

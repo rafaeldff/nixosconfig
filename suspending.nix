@@ -27,8 +27,8 @@
 
   # Configure suspend-then-hibernate behavior
   # After 60min of suspend, transition to hibernate
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=60m
-    SuspendState=mem
-  '';
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "60m";
+    SuspendState = "mem";
+  };
 }
