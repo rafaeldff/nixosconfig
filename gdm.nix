@@ -11,6 +11,11 @@
     enable = true;
   };
 
+  # Tell GDM to launch sway by default. Without this, GDM 50.0 silently tries
+  # to start a GNOME session for the logged-in user, fails (no gnome-shell on
+  # this machine), and bounces back to the greeter. See NixOS/nixpkgs#523332.
+  services.displayManager.defaultSession = "sway";
+
   # Workaround for https://github.com/NixOS/nixpkgs/issues/523332
   # (GDM 50.0 greeter fails with "Unable to run session" because gnome-session
   # and the greeter's session files aren't reachable from the spawned greeter's
