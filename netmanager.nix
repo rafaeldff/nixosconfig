@@ -29,6 +29,14 @@
         if [[ "$interface" =~ ^(en|eth) ]]; then
           case "$status" in
             up)
+              # Only disable WiFi if this wired link is an actual internet
+              # uplink (it has a default gateway). Shared connections that
+              # hand out internet to another device (e.g. a set-top box) have
+              # no gateway, so leave WiFi on -- it's our only uplink.
+              if [ -z "$IP4_GATEWAY" ]; then
+                logger -t wifi-wired-toggle "Ethernet $interface up but no gateway (shared/link-local), keeping WiFi on"
+                exit 0
+              fi
               logger -t wifi-wired-toggle "Ethernet interface $interface is up, disabling WiFi"
               ${pkgs.networkmanager}/bin/nmcli radio wifi off
               ;;
