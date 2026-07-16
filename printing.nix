@@ -35,6 +35,17 @@
 
   environment.systemPackages = [ pkgs.xsane pkgs.cups ];
 
+  # ensure-printers runs early and fails if the printer isn't reachable yet.
+  # Wait for network-online and retry on failure so BrotherManual gets created.
+  systemd.services.ensure-printers = {
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    serviceConfig = {
+      Restart = "on-failure";
+      RestartSec = "30s";
+    };
+  };
+
   hardware.sane.brscan5 = {
     enable = true;
     netDevices = {
