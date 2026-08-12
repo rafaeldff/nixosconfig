@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  home.packages =
+    with pkgs; [
+      ghostty
+    ];
+
   programs.bash = {
     enable = true;
     historyControl = ["ignorespace" "ignoredups"];
