@@ -21,18 +21,18 @@
   # and the greeter's session files aren't reachable from the spawned greeter's
   # environment). Mirrors the in-flight fix in nixpkgs PR #523948 — drop this
   # block once that PR lands in nixos-26.05.
-  security.pam.services.gdm-launch-environment.rules.session.env-greeter = {
-    inherit (config.security.pam.services.gdm-launch-environment.rules.session.env)
-      control modulePath;
-    order = config.security.pam.services.gdm-launch-environment.rules.session.env.order + 50;
-    settings = {
-      conffile = pkgs.writeText "gdm-greeter-env" ''
-        PATH          DEFAULT="''${PATH}:${pkgs.gnome-session}/bin"
-        XDG_DATA_DIRS DEFAULT="''${XDG_DATA_DIRS}:${config.services.displayManager.generic.environment.XDG_DATA_DIRS}"
-      '';
-      readenv = 0;
-    };
-  };
+  #security.pam.services.gdm-launch-environment.rules.session.env-greeter = {
+    #inherit (config.security.pam.services.gdm-launch-environment.rules.session.env)
+      #control modulePath;
+    #order = config.security.pam.services.gdm-launch-environment.rules.session.env.order + 50;
+    #settings = {
+      #conffile = pkgs.writeText "gdm-greeter-env" ''
+        #PATH          DEFAULT="''${PATH}:${pkgs.gnome-session}/bin"
+        #XDG_DATA_DIRS DEFAULT="''${XDG_DATA_DIRS}:${config.services.displayManager.generic.environment.XDG_DATA_DIRS}"
+      #'';
+      #readenv = 0;
+    #};
+  #};
 
   # Extracted from nixos/modules/services/x11/xserver.nix
   systemd.defaultUnit = "graphical.target";
