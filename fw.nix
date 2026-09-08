@@ -38,6 +38,7 @@
     touchpad = {
     # accelSpeed = "0.2";
       naturalScrolling = true;
+      tapping = true;
     };
     #multitouch.enable = true;
     #multitouch.invertScroll = true;
